@@ -10,9 +10,9 @@
 <body class="flex flex-col h-screen max-w-7xl bg-neutral dark:bg-neutral-800 dark:text-neutral">
   {{ partial "header.html" . }}
 
-  <div class="relative">
+  <div class="relative flex flex-col flex-grow">
     {{ block "main" . }}{{ end }}
-    {{ partial "scroll-to-top.html" }}
+    {{ partial "scroll-to-top.html" . }}
     {{ partial "footer.html" . }}
   </div>
 

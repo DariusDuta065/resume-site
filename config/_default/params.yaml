@@ -17,3 +17,6 @@ assets:
   msapplication_TileColor: "#2e2e33"
 
   profilePic: images/profile_placeholder.png
+
+features:
+  showScrollToTop: true
