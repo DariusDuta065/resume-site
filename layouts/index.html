@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{ $profilePic := resources.Get (.Site.Params.assets.profilePic) }}
+
+<main class="flex flex-grow last:w-full h-max">
+
+  <div class="flex w-full justify-center items-center">
+    <div
+      class="flex flex-col w-full sm:w-[350px] h-fit sm:h-[500px] justify-center items-center rounded-md mt-4 drop-shadow-md hover:drop-shadow-xl">
+      <div class="flex flex-col flex-grow justify-center items-center p-2">
+        <div class="flex mt-4">
+          <img class="flex shadow-xl rounded-full align-middle border-none max-w-[200px]" src="{{ $profilePic.RelPermalink }}" alt="">
+        </div>
+
+        <div class="flex justify-center items-center text-center mt-6 text-2xl font-bold">Darius Duta</div>
+        <div class="flex justify-center items-center h-1 bg-cv-dark-blue w-16 my-4"></div>
+        <div class="flex text-lg text-gray-700 mb-7">Software Engineer</div>
+      </div>
+
+      <div class="flex flex-row py-4 bg-white w-full justify-center">
+        <div class="mr-2">
+          <a href="https://github.com/dduta065" target="_blank">
+            <img src="github_logo.svg" width="40" alt="GitHub profile">
+          </a>
+        </div>
+        <div>
+          <a href="https://linkedin.com/in/dduta065" target="_blank">
+            <img src="linkedin_logo.svg" width="40" alt="LinkedIn profile">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+{{ end }}

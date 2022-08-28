@@ -1,0 +1,15 @@
+{{ $current := . }}
+
+<div class="flex">
+  {{ range .Site.Menus.main }}
+  {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+  {{ $active = or $active (eq .Name $current.Title) }}
+  {{ $active = or $active (eq $current.RelPermalink .URL) }}
+  {{ $activeClass := cond ($active) "font-bold" "" }}
+
+  <a class="flex p-2 items-start text-sm sm:text-base rounded-lg hover:bg-gray-50 {{ $activeClass }}" href="{{ .URL }}"
+    title="{{ .Title }}">
+    {{ .Name }}
+  </a>
+  {{ end }}
+</div>

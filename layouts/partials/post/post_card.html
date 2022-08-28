@@ -1,0 +1,32 @@
+{{- $class := "post" }}
+
+<article
+  class="{{ $class }} drop-shadow-md hover:drop-shadow-lg hover:duration-500 bg-slate-100 p-4 sm:p-8 rounded-md justify-center items-center align-middle my-2">
+  
+  {{/*  Cover  */}}
+  {{- $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
+  {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
+
+  {{/*  Title  */}}
+  <div class="entry-header text-2xl text-cv-dark-blue">
+    <a class="" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}">
+      {{- .Title }}
+      {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
+    </a>
+  </div>
+
+  {{/*  Summary  */}}
+  {{- if (ne (.Param "hideSummary") true) }}
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  {{- end }}
+
+  {{/*  Metadata  */}}
+  {{- if not (.Param "hideMeta") }}
+  <footer class="entry-footer">
+    {{ partial "post/post_meta.html" . }}
+  </footer>
+  {{- end }}
+
+</article>

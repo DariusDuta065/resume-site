@@ -1,0 +1,22 @@
+{{ $statusSign := cond (eq .Params.Status "read") "Finished" "Reading" }}
+{{ $statusColour := cond (eq .Params.Status "read") "bg-green-400" "bg-cv-light-blue" }}
+
+<article
+  class="drop-shadow-md hover:drop-shadow-lg bg-slate-100 p-2 sm:p-4 rounded-md justify-center items-center align-middle my-2">
+
+  <div class="flex items-center justify-between">
+
+    <div class="entry-header text-xl text-cv-dark-blue mr-4">
+      <a class="underline" aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}">
+        {{ .Params.Title }}
+      </a>
+
+      <div class="text-sm text-gray-500">{{ .Params.Author }} {{ if .Params.Year }} — {{ .Params.Year }} {{ end }}</div>
+    </div>
+
+    <div class="{{ $statusColour }} rounded-md py-[2px] px-2 text-white">
+      {{ $statusSign }}
+    </div>
+  </div>
+
+</article>

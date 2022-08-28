@@ -1,0 +1,76 @@
+{{- define "main" }}
+
+<main class="flex flex-col w-full h-max flex-grow">
+
+  {{- if not .IsHome | and .Title }}
+  <header class="page-header px-4 my-2 sm:my-6 flex flex-col w-1/2 self-center container">
+
+    <div class="flex self-center items-center py-2 sm:py-6 my-4 text-center text-3xl text-cv-dark-blue dark:text-white">
+      <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
+      <h1>{{ .Title }}</h1>
+      <div class="w-2 h-2 bg-cv-light-blue ml-2 inline-block rounded-lg"></div>
+    </div>
+
+    {{- if .Description }}
+    <div class="post-description w-2/3 self-center mt-2 text-cv-dark-blue dark:text-white">
+      {{ .Description | markdownify }}
+    </div>
+    {{- end }}
+  </header>
+  {{- end }}
+
+  {{/*  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }} */}}
+
+  {{- $pages := union .RegularPages .Sections }}
+  {{- $paginator := .Paginate $pages }}
+  {{- $term := .Data.Term }}
+
+  {{/*  {{- if .IsHome }}
+  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+  {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
+  {{- end }} */}}
+
+  {{/*  {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
+  {{- partial "home_info.html" . }}
+  {{- end }} */}}
+
+  <div class="w-full flex justify-center">
+    <div class="flex flex-col p-2 sm:p-6 prose">
+      {{- range $index, $page := $paginator.Pages }}
+      {{ partial "post/post_card.html" . }}
+      {{- end }}
+    </div>
+  </div>
+
+  {{/*  {{- if gt $paginator.TotalPages 1 }}
+  <footer class="page-footer">
+    <nav class="pagination">
+      {{- if $paginator.HasPrev }}
+      <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+        «&nbsp;{{ i18n "prev_page" }}&nbsp;
+        {{- if (.Param "ShowPageNums") }}
+        {{- sub $paginator.PageNumber 1 }}/{{ $paginator.TotalPages }}
+        {{- end }}
+      </a>
+      {{- end }}
+      {{- if $paginator.HasNext }}
+      <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+        {{- i18n "next_page" }}&nbsp;
+        {{- if (.Param "ShowPageNums") }}
+        {{- add 1 $paginator.PageNumber }}/{{ $paginator.TotalPages }}
+        {{- end }}&nbsp;»
+      </a>
+      {{- end }}
+    </nav>
+  </footer>
+  {{- end }} */}}
+
+</main>
+
+{{- end }}{{- /* end main */ -}}

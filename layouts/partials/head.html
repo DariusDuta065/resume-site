@@ -1,0 +1,48 @@
+{{/*  Metadata  */}}
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="robots" content="{{ site.Params.metadata.robots }}">
+<link rel="canonical" href="{{ site.Params.metadata.canonical }}">
+<meta name="description" content="{{ site.Params.metadata.description }}">
+
+<meta property="og:type" content="{{ site.Params.metadata.ogType }}">
+<meta property="og:title" content="{{ site.Params.metadata.ogTitle }}">
+<meta property="og:url" content="{{ site.Params.metadata.ogUrl }}">
+<meta property="og:description" content="{{ site.Params.metadata.description }}">
+
+{{/*  Title  */}}
+<title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
+
+{{/*  Fonts  */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;600;700&display=swap">
+
+{{/*  Stylesheets  */}}
+{{ $styles := resources.Get "/css/style.css" | postCSS }}
+{{ if .Site.IsServer }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}"/>
+{{ else }}
+  {{ $styles := $styles | minify | fingerprint | resources.PostProcess }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}"/>
+{{ end }}
+
+{{- /* Favicons */}}
+<link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
+<link rel="apple-touch-icon" href="{{ site.Params.assets.apple_touch_icon | default "apple-touch-icon.png" | absURL }}">
+<link rel="mask-icon" href="{{ site.Params.assets.safari_pinned_tab | default "safari-pinned-tab.svg" | absURL }}">
+<meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
+<meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
+
+{{/*  Misc  */}}
+{{ template "_internal/google_analytics.html" . }}
+
+{{/*  JavaScript  */}}
+
+{{ $jsTheme := resources.Get "js/theme.js" }}
+{{ $jsTheme = $jsTheme | resources.Minify | resources.Fingerprint "sha512" }}
+<script type="text/javascript" src="{{ $jsTheme.RelPermalink }}" integrity="{{ $jsTheme.Data.Integrity }}"></script>

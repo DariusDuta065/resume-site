@@ -1,0 +1,19 @@
+
+metadata:
+  robots: index, follow
+  canonical: https://dariusduta.dev
+  description: I am Darius Duta, a full-stack web developer with a focus on AWS cloud and automations.
+
+  ogType: website
+  ogTitle: Darius Duta | Software Engineer
+  ogUrl: https://dariusduta.dev
+
+assets:
+  favicon: favicon.ico
+  favicon16x16: favicon.ico
+  favicon32x32: favicon.ico
+  apple_touch_icon: favicon.ico
+  theme_color: "#2e2e33"
+  msapplication_TileColor: "#2e2e33"
+
+  profilePic: images/profile_placeholder.png

@@ -1,0 +1,100 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+@tailwind base;
+@tailwind components;
+
+body,
+body a,
+body button {
+  @apply transition-colors;
+  transition-duration: 300ms;
+}
+
+/* Scale SVG icons to text size */
+.icon svg {
+  @apply h-[1em] w-[1em];
+}
+
+/* Hamburger menu */
+body:has(#menu-controller:checked) {
+  @apply overflow-y-hidden;
+}
+#menu-button:has(#menu-controller:checked) {
+  @apply invisible;
+}
+#menu-controller:checked ~ #menu-wrapper {
+  @apply visible opacity-100;
+}
+
+/* RTL support */
+.prose blockquote {
+  @apply rtl:pr-4 rtl:border-l-0 rtl:border-r-4;
+}
+.prose ul > li,
+.prose ol > li {
+  @apply rtl:pl-0 rtl:pr-2 rtl:mr-7;
+}
+.prose ol > li:before,
+.prose ul > li:before {
+  @apply rtl:left-auto rtl:right-1;
+}
+.prose thead td:first-child,
+.prose thead th:first-child {
+  @apply rtl:pr-0;
+}
+.prose thead td:last-child,
+.prose thead th:last-child {
+  @apply rtl:pl-0;
+}
+
+/* Adjust first child within prose */
+.prose div.min-w-0.max-w-prose > *:first-child {
+  @apply mt-3;
+}
+
+/* Table of Contents */
+.toc ul,
+.toc li {
+  @apply px-0 leading-snug list-none;
+}
+.toc ul ul {
+  @apply ltr:pl-4 rtl:pr-4;
+}
+.toc a {
+  @apply font-normal text-neutral-700 dark:text-neutral-400;
+}
+.toc ul > li {
+  @apply rtl:mr-0;
+}
+
+/* Code Copy */
+.highlight-wrapper {
+  @apply block;
+}
+.highlight {
+  @apply relative z-0;
+}
+.highlight:hover > .copy-button {
+  @apply visible;
+}
+
+@tailwind utilities;

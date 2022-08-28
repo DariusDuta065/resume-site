@@ -1,0 +1,26 @@
+{{ $current := . }}
+
+<div class="w-full">
+  <ul id="mobile-navbar" class="flex transition-all overflow-hidden h-0 flex-col px-4 bg-gray-50 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+
+    {{ range $index, $item := .Site.Menus.main }}
+    {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+    {{ $active = or $active (eq .Name $current.Title) }}
+    {{ $active = or $active (eq $current.RelPermalink .URL) }}
+    {{ $activeClass := cond ($active) "font-bold" "" }}
+
+    {{ $lastItem := index (last 1 $.Site.Menus.main) 0 }}
+
+    <li>
+      <a class="flex rounded-lg hover:bg-gray-50 text-lg dark:text-white py-2 {{ $activeClass }}" href="{{ .URL }}" title="{{ .Title }}">
+        {{ .Name }}
+      </a>
+      {{ if ne $item $lastItem }}
+        <hr />
+      {{end}}
+    </li>
+    {{ end }}
+  </ul>
+
+  <hr class="bg-cv-light-blue h-0.5" />
+</div>
