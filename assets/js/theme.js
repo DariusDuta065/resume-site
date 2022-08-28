@@ -29,7 +29,7 @@ if (document.documentElement.getAttribute("data-auto-appearance") === "true") {
     });
 }
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", () => {
   const switchers = document.getElementsByName("appearance-switcher");
 
   if (switchers.length > 0) {

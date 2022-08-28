@@ -1,26 +1,25 @@
 {{ $current := . }}
 
-<div class="w-full">
-  <ul id="mobile-navbar" class="flex transition-all overflow-hidden h-0 flex-col px-4 bg-gray-50 border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+<div class="w-full px-4">
+  <ul id="mobile-navbar"
+    class="flex flex-col transition-all overflow-hidden h-0 border-white rounded-lg bg-neutral-200  dark:bg-neutral-800 dark:border-white">
 
-    {{ range $index, $item := .Site.Menus.main }}
-    {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
-    {{ $active = or $active (eq .Name $current.Title) }}
-    {{ $active = or $active (eq $current.RelPermalink .URL) }}
-    {{ $activeClass := cond ($active) "font-bold" "" }}
+    <div class="p-2">
+      {{ range $index, $item := .Site.Menus.main }}
+      {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+      {{ $active = or $active (eq .Name $current.Title) }}
+      {{ $active = or $active (eq $current.RelPermalink .URL) }}
+      {{ $activeClass := cond ($active) "font-bold" "" }}
 
-    {{ $lastItem := index (last 1 $.Site.Menus.main) 0 }}
+      {{ $lastItem := index (last 1 $.Site.Menus.main) 0 }}
 
-    <li>
-      <a class="flex rounded-lg hover:bg-gray-50 text-lg dark:text-white py-2 {{ $activeClass }}" href="{{ .URL }}" title="{{ .Title }}">
-        {{ .Name }}
-      </a>
-      {{ if ne $item $lastItem }}
-        <hr />
-      {{end}}
-    </li>
-    {{ end }}
+      <li>
+        <a class="flex rounded-lg text-lg py-2 px-2 dark:text-white hover:text-primary-400 dark:hover:text-primary-400 {{ $activeClass }}"
+          href="{{ .URL }}" title="{{ .Title }}">
+          {{ .Name }}
+        </a>
+      </li>
+      {{ end }}
+    </div>
   </ul>
-
-  <hr class="bg-cv-light-blue h-0.5" />
 </div>

@@ -2,27 +2,12 @@
   <div class="flex flex-col justify-center mt-4 p-4">
     <div class="">
       Made with
-      <a
-        target="_blank"
-        href="https://gohugo.io/"
-        class="underline hover:text-cv-light-blue hover:duration-150"
-        >Hugo</a
-      >
+      {{ partial "link.html" (dict "text" "Hugo" "link" "https://gohugo.io/") }}
       &amp;
-      <a
-        target="_blank"
-        href="https://tailwindcss.com/"
-        class="underline hover:text-cv-light-blue hover:duration-150"
-        >Tailwind</a
-      >
+      {{ partial "link.html" (dict "text" "Tailwind" "link" "https://tailwindcss.com/") }}
     </div>
     <div class="flex justify-center">
-      <a
-        target="_blank"
-        href="https://github.com/dduta065/resume-site"
-        class="underline hover:text-cv-light-blue hover:duration-150"
-        >Source</a
-      >
+      {{ partial "link.html" (dict "text" "Source" "link" "https://github.com/dduta065/resume-site") }}
     </div>
   </div>
 </footer>

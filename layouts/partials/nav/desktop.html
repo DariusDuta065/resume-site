@@ -5,9 +5,9 @@
   {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
   {{ $active = or $active (eq .Name $current.Title) }}
   {{ $active = or $active (eq $current.RelPermalink .URL) }}
-  {{ $activeClass := cond ($active) "font-bold" "" }}
+  {{ $activeClass := cond ($active) "font-bold hover:text-base dark:hover:text-white" "" }}
 
-  <a class="flex p-2 items-start text-sm sm:text-base rounded-lg hover:bg-gray-50 {{ $activeClass }}" href="{{ .URL }}"
+  <a class="flex p-2 items-start text-sm sm:text-base rounded-lg dark:text-white dark:hover:text-primary-400 hover:text-primary-400 {{ $activeClass }}" href="{{ .URL }}"
     title="{{ .Title }}">
     {{ .Name }}
   </a>

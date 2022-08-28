@@ -1,19 +1,6 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body {
   margin: 0;
   padding: 0;
-  border: 0;
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
@@ -1506,20 +1493,20 @@ body:has(#menu-controller:checked) {
   height: 3rem;
 }
 
-.h-0 {
-  height: 0px;
+.h-\[236px\] {
+  height: 236px;
 }
 
 .h-0\.5 {
   height: 0.125rem;
 }
 
-.h-6 {
-  height: 1.5rem;
+.h-0 {
+  height: 0px;
 }
 
-.h-56 {
-  height: 14rem;
+.h-6 {
+  height: 1.5rem;
 }
 
 .w-full {
@@ -1622,12 +1609,29 @@ body:has(#menu-controller:checked) {
   border-radius: 0.5rem;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
 .border {
   border-width: 1px;
 }
 
+.border-0 {
+  border-width: 0px;
+}
+
 .border-none {
   border-style: none;
+}
+
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
 .border-gray-100 {
@@ -1660,9 +1664,9 @@ body:has(#menu-controller:checked) {
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
-.bg-gray-50 {
+.bg-neutral-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -1697,9 +1701,9 @@ body:has(#menu-controller:checked) {
   padding-right: 0.5rem;
 }
 
-.px-16 {
-  padding-left: 4rem;
-  padding-right: 4rem;
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .py-\[2px\] {
@@ -1779,6 +1783,19 @@ body:has(#menu-controller:checked) {
           text-decoration-line: underline;
 }
 
+.decoration-transparent {
+  -webkit-text-decoration-color: transparent;
+          text-decoration-color: transparent;
+}
+
+.decoration-2 {
+  text-decoration-thickness: 2px;
+}
+
+.underline-offset-2 {
+  text-underline-offset: 2px;
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1820,24 +1837,29 @@ body:has(#menu-controller:checked) {
   width: 100%;
 }
 
-.hover\:bg-gray-50:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
-.hover\:text-cv-light-blue:hover {
-  --tw-text-opacity: 1;
-  color: rgb(112 139 178 / var(--tw-text-opacity));
+.hover\:text-base:hover {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .hover\:text-primary-600:hover {
   --tw-text-opacity: 1;
   color: rgb(147 51 234 / var(--tw-text-opacity));
+}
+
+.hover\:text-primary-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(192 132 252 / var(--tw-text-opacity));
+}
+
+.hover\:decoration-primary-500:hover {
+  -webkit-text-decoration-color: #a855f7;
+          text-decoration-color: #a855f7;
 }
 
 .hover\:drop-shadow-xl:hover {
@@ -1848,10 +1870,6 @@ body:has(#menu-controller:checked) {
 .hover\:drop-shadow-lg:hover {
   --tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.hover\:duration-150:hover {
-  transition-duration: 150ms;
 }
 
 .hover\:duration-500:hover {
@@ -1933,6 +1951,16 @@ body:has(#menu-controller:checked) {
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
+.dark .dark\:border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.dark .dark\:border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .dark .dark\:bg-neutral-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(38 38 38 / var(--tw-bg-opacity));
@@ -1945,6 +1973,11 @@ body:has(#menu-controller:checked) {
 
 .dark .dark\:bg-neutral-800\/50 {
   background-color: rgb(38 38 38 / 0.5);
+}
+
+.dark .dark\:bg-neutral-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-gray-800 {
@@ -1980,6 +2013,11 @@ body:has(#menu-controller:checked) {
 .dark .dark\:hover\:text-primary-400:hover {
   --tw-text-opacity: 1;
   color: rgb(192 132 252 / var(--tw-text-opacity));
+}
+
+.dark .dark\:hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .dark .dark\:focus\:ring-gray-600:focus {
