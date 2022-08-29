@@ -3,8 +3,7 @@
 <main class="flex flex-col w-full h-max flex-grow">
 
   {{- if not .IsHome | and .Title }}
-  <header class="page-header px-4 my-2 sm:my-6 flex flex-col w-1/2 self-center container">
-
+  <header class="px-4 my-2 sm:my-6 flex flex-col self-center container">
     <div class="flex self-center items-center py-2 sm:py-6 my-4 text-center text-3xl text-cv-dark-blue dark:text-white">
       <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
       <h1>{{ .Title }}</h1>
@@ -12,12 +11,13 @@
     </div>
 
     {{- if .Description }}
-    <div class="post-description w-2/3 self-center mt-2 text-cv-dark-blue dark:text-white">
+    <div class="max-w-lg px-4 self-center text-cv-dark-blue dark:text-white">
       {{ .Description | markdownify }}
     </div>
     {{- end }}
   </header>
   {{- end }}
+
 
   {{- $pages := union .RegularPages .Sections }}
   {{- $paginator := .Paginate $pages }}
