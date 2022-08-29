@@ -1,6 +1,6 @@
 html, body {
-	margin: 0;
-	padding: 0;
+	/* margin: 0;
+	padding: 0; */
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
@@ -59,18 +59,28 @@ body:has(#menu-controller:checked) {
 }
 
 /* Table of Contents */
+/* Table of Contents */
 .toc ul,
 .toc li {
   @apply px-0 leading-snug list-none;
 }
 .toc ul ul {
-  @apply ltr:pl-4 rtl:pr-4;
+  @apply pl-4;
 }
 .toc a {
   @apply font-normal text-neutral-700 dark:text-neutral-400;
 }
 .toc ul > li {
   @apply rtl:mr-0;
+}
+
+.toc a {
+  @apply underline decoration-primary-300 font-medium;
+}
+.toc a:hover {
+  @apply text-neutral-50 bg-primary-600;
+  text-decoration: none;
+  border-radius: 0.09rem;
 }
 
 /* Code Copy */

@@ -11,7 +11,7 @@
 
     <div class="py-1">
       <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
-        <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
+        <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
         <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
       </div>
 
@@ -25,9 +25,14 @@
     <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert px-4">
 
       {{ if .Page.Params.ShowToc | default false }}
-      <div class="order-first px-0 lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8 lg:order-last">
+      <div class="order-first pt-4 px-0 lg:pt-0 lg:max-w-xs lg:order-last">
         <div
-          class="py-2 border-dotted border-l rtl:border-r ml-5 border-neutral-300 dark:border-neutral-600 pl-5 toc lg:sticky lg:top-10 print:hidden w-[15rem]">
+          class="py-1 ml-5 pl-2 toc lg:border-l rounded-lg lg:rounded-none border-2 lg:border-0 border-neutral-300 dark:border-neutral-600 lg:sticky lg:top-10 print:hidden w-[15rem]">
+
+          <div class="pt-2 pl-2 -mb-2 text-lg text-neutral-500 dark:text-neutral-100 lg:hidden">
+            Contents
+          </div>
+
           {{ .TableOfContents | emojify }}
         </div>
       </div>
