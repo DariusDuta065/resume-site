@@ -5,6 +5,12 @@ pluralizeListTitles: false
 
 googleAnalytics: G-EYY3066F76
 
+markup:
+  tableOfContents:
+    ordered: false
+    startLevel: 1
+    endLevel: 3
+
 menu:
   main:
   - identifier: home

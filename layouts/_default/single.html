@@ -1,19 +1,43 @@
 {{define "main"}}
-<main class="flex flex-col flex-grow p-0 px-2 sm:px-0">
-  <div class="flex flex-col container sm:w-2/3 lg:max-w-[50%]  self-center">
-    <div class="text-lg py-2 sm:py-4">
+<main class="flex flex-col flex-grow p-0 px-2 sm:px-0 self-center sm:w-4/5 lg:max-w-4xl">
+  <div class="flex flex-col container self-center">
+    {{/*  sm:w-2/3 lg:max-w-[70%]  */}}
+
+    {{ if .Page.Params.ShowBreadCrumbs | default true }}
+    <div class="text-lg pt-2 px-4 sm:pt-2">
       {{- partial "post/post_breadcrumbs.html" . }}
     </div>
+    {{ end }}
 
-    <div class="text-3xl flex self-center items-center py-2 sm:py-6 text-center text-cv-dark-blue dark:text-white">
-      <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
-      <h1>{{ .Title }}</h1>
-      <div class="w-2 h-2 bg-cv-light-blue ml-2 inline-block rounded-lg"></div>
+    <div class="py-1">
+      <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
+        <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
+        <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
+      </div>
+
+      {{ if .Page.Params.ShowMeta }}
+      <div class="pt-2 pl-4 text-neutral-500 dark:text-white">
+        {{ partial "post/post_meta.html" . }}
+      </div>
+      {{ end }}
     </div>
 
-    <article class="self-center py-2 sm:py-6 prose dark:prose-invert">
-      {{ .Content }}
-    </article>
+    <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert px-4">
+
+      {{ if .Page.Params.ShowToc | default false }}
+      <div class="order-first px-0 lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8 lg:order-last">
+        <div
+          class="py-2 border-dotted border-l rtl:border-r ml-5 border-neutral-300 dark:border-neutral-600 pl-5 toc lg:sticky lg:top-10 print:hidden w-[15rem]">
+          {{ .TableOfContents | emojify }}
+        </div>
+      </div>
+      {{ end }}
+
+      <div class="min-w-0 min-h-0">
+        {{ .Content }}
+      </div>
+    </section>
+
   </div>
 </main>
 
