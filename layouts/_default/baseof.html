@@ -13,7 +13,10 @@
   <div class="relative flex flex-col flex-grow">
     {{ block "main" . }}{{ end }}
     {{ partial "scroll-to-top.html" . }}
+
+    {{ if not .IsHome }}
     {{ partial "footer.html" . }}
+    {{ end }}
   </div>
 
 </body>

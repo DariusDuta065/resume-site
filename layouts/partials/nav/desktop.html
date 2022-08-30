@@ -1,6 +1,6 @@
 {{ $current := . }}
 
-<div class="flex">
+<div class="flex"> 
   {{ range .Site.Menus.main }}
   {{ $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
   {{ $active = or $active (eq .Name $current.Title) }}

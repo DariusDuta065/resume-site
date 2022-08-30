@@ -1,34 +1,38 @@
 {{- define "main" }}
 
-<main class="flex flex-col w-full h-max flex-grow">
+<main class="flex flex-row flex-grow w-full h-max">
 
-  {{- if not .IsHome | and .Title }}
-  <header class="px-4 my-2 sm:my-6 flex flex-col self-center container">
-    <div class="flex self-center items-center py-2 sm:py-6 my-4 text-center text-3xl text-cv-dark-blue dark:text-white">
-      <div class="w-2 h-2 bg-cv-light-blue mr-2 inline-block rounded-lg"></div>
-      <h1>{{ .Title }}</h1>
-      <div class="w-2 h-2 bg-cv-light-blue ml-2 inline-block rounded-lg"></div>
-    </div>
+  <div class="flex flex-col flex-grow px-16 md:px-28 lg:px-32">
 
-    {{- if .Description }}
-    <div class="max-w-lg px-4 self-center text-cv-dark-blue dark:text-white">
-      {{ .Description | markdownify }}
-    </div>
-    {{- end }}
-  </header>
-  {{- end }}
+    {{- if not .IsHome | and .Title }}
+    <header class="px-4 mt-4 sm:mt-6 flex flex-col container">
+      <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
+        <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
+        <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
+      </div>
 
-
-  {{- $pages := union .RegularPages .Sections }}
-  {{- $paginator := .Paginate $pages }}
-  {{- $term := .Data.Term }}
-
-  <div class="w-full flex justify-center">
-    <div class="flex flex-col p-2 sm:p-6 prose">
-      {{- range $index, $page := $paginator.Pages }}
-      {{ partial "post/post_card.html" . }}
+      {{- if .Description }}
+      <div class="px-4 mb-4 text-cv-dark-blue dark:text-white">
+        <div class="mt-2 mb-4 max-w-lg">{{ .Description | markdownify }}</div>
+        <hr class="mt-4 max-w-lg" />
+      </div>
       {{- end }}
+    </header>
+    {{- end }}
+
+
+    {{- $pages := union .RegularPages .Sections }}
+    {{- $paginator := .Paginate $pages }}
+    {{- $term := .Data.Term }}
+
+    <div class="w-full flex justify-center md:justify-start">
+      <div class="flex flex-col p-2 sm:p-2 prose">
+        {{- range $index, $page := $paginator.Pages }}
+        {{ partial "post/post_card.html" . }}
+        {{- end }}
+      </div>
     </div>
+
   </div>
 
 </main>
