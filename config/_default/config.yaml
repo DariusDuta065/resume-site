@@ -10,26 +10,3 @@ markup:
     ordered: false
     startLevel: 1
     endLevel: 3
-
-menu:
-  main:
-  - identifier: home
-    name: About me
-    weight: 1
-    url: /
-  - identifier: resume
-    name: Resume
-    weight: 2
-    url: /resume
-  - identifier: achievements
-    name: Achievements
-    weight: 3
-    url: /achievements
-  - identifier: projects
-    name: Projects
-    weight: 4
-    url: /projects
-  - identifier: books
-    name: Books
-    weight: 5
-    url: /books
