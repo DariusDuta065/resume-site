@@ -1,22 +1,39 @@
 {{ define "main" }}
 {{ $profilePic := resources.Get (.Site.Params.assets.profilePic) }}
 
-<main class="flex flex-grow last:w-full h-max">
+{{/*  Tablet & Desktop  */}}
+<div class="absolute hidden md:inline w-full h-full -z-50 bg-white dark:bg-neutral-600">
+  <div class="bg-neutral-100 dark:bg-neutral-800 w-2/5 h-full"></div>
+  <div class=""></div>
+</div>
 
-  <div class="flex w-full justify-center items-center">
+{{/*  Mobile  */}}
+<div class="absolute inline md:hidden w-full h-full -z-50 bg-white dark:bg-neutral-700">
+  <div class="bg-neutral-100 dark:bg-neutral-800 h-2/5 w-full"></div>
+  <div class=""></div>
+</div>
+
+<main class="flex flex-grow justify-center md:justify-start last:w-full h-max">
+
+  <div
+    class="flex flex-col md:flex-row w-full my-8 md:my-0 mx-3 justify-center items-center max-w-[500px] md:max-w-none">
+
     <div
-      class="flex flex-col w-full sm:w-[350px] h-fit sm:h-[500px] justify-center items-center rounded-md mt-4 drop-shadow-md hover:drop-shadow-xl">
-      <div class="flex flex-col flex-grow justify-center items-center p-2">
+      class="flex flex-col self-center w-full max-w-[350px] md:max-w-none md:w-[350px] h-[450px] mt-0 md:mt-0 justify-center items-center rounded-md md:rounded-none md:drop-shadow-md drop-shadow-none  bg-neutral-200 dark:bg-neutral-700 md:dark:bg-neutral-800 dark:text-white">
+
+      <div class="flex flex-col flex-grow justify-center items-center p-2 mx-8 md:mx-2 ">
         <div class="flex mt-4">
-          <img class="flex shadow-xl rounded-full align-middle border-none max-w-[200px]" src="{{ $profilePic.RelPermalink }}" alt="">
+          <img class="flex shadow-xl rounded-full align-middle border-none w-[200px] h-[200px]"
+            src="{{ $profilePic.RelPermalink }}" alt="">
         </div>
 
         <div class="flex justify-center items-center text-center mt-6 text-2xl font-bold">Darius Duta</div>
-        <div class="flex justify-center items-center h-1 bg-cv-dark-blue w-16 my-4"></div>
-        <div class="flex text-lg text-gray-700 mb-7">Test</div>
+        <div class="flex justify-center items-center h-1 w-16 my-4 bg-primary-500 dark:bg-primary-400"></div>
+        <div class="flex text-lg text-gray-700 dark:text-neutral-100 mb-2 ">Software Engineer</div>
       </div>
 
-      <div class="flex flex-row py-4 bg-white w-full justify-center">
+      <div
+        class="flex flex-row py-4 rounded-b-lg md:rounded-none bg-neutral-100 dark:bg-neutral-300 w-full justify-center">
         <div class="mr-2">
           <a href="https://github.com/dduta065" target="_blank">
             <img src="github_logo.svg" width="40" alt="GitHub profile">
@@ -29,6 +46,42 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="flex self-center w-full max-w-[500px] md:max-w-none md:w-[350px] h-fit md:h-[450px] mt-4 md:mt-0 rounded-md md:rounded-none md:drop-shadow-md bg-white md:bg-white dark:bg-transparent dark:text-white dark:border dark:border-neutral-700">
+      <div class="flex flex-col flex-grow justify-center p-4 w-full mx-4 md:mx-2">
+        <div class="text-5xl mb-2 font-bold">
+          Hi there
+        </div>
+
+        <div class="text-xl font-semibold">
+          Here's who I am & what I do
+        </div>
+
+        <div class="my-5">
+          <a href="/resume" type="button"
+            class="text-white text-center font-bold px-4 py-1.5 mb-2 bg-purple-700 hover:bg-purple-600 focus:outline-none focus:ring-4 focus:ring-purple-300 rounded-full dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+            Resume
+          </a>
+          <a href="/projects" type="button"
+            class="text-white text-center font-bold px-4 py-1.5 mb-2 bg-purple-700 hover:bg-purple-600 focus:outline-none focus:ring-4 focus:ring-purple-300 rounded-full dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+            Projects
+          </a>
+        </div>
+
+        <div>
+          <p>
+            Lorem ipsum dolor sit amet, adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua.
+          </p>
+          <p class="mt-4">
+            Sed ut perspiciatis unde omnis iste natus error sit doloremque laudantium.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
 </main>

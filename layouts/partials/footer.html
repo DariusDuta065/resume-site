@@ -2,7 +2,7 @@
 
 <footer class="flex w-full justify-center text-gray-700 dark:text-neutral-50">
 
-  <div class="flex w-full container justify-center lg:justify-between max-w-3xl p-4 items-center">
+  <div class="flex w-full container justify-center md:justify-between max-w-3xl p-4 items-center">
 
     <div class="flex justify-center">
       <a href="/" class="flex items-center select-none decoration-transparent">
@@ -14,12 +14,12 @@
         </div>
 
         <div class="flex items-center content-center text-center">
-          <div class="text-neutral-500 dark:text-white sm:text-lg font-bold mr-1">darius duta</div>
+          <div class="text-neutral-500 dark:text-white font-bold mr-1">darius duta</div>
         </div>
       </a>
     </div>
 
-    <div class="hidden lg:inline flex-col  items-center align-middle leading-[1.5rem]">
+    <div class="hidden md:inline flex-col  items-center align-middle leading-[1.5rem]">
       made with
       {{ partial "link.html" (dict "text" "hugo" "link" "https://gohugo.io/") }}
       &amp;
@@ -27,7 +27,7 @@
       |
       <a target="_blank" href="https://github.com/dduta065/resume-site"
         class="inline-flex h-[20px] items-center align-middle underline decoration-transparent decoration-2 underline-offset-2 hover:decoration-primary-500">
-        <div class="inline-flex align-bottom w-4 h-[16px]">
+        <div class="inline-flex align-bottom w-4 h-[16px] dark:fill-white">
           {{ partial "icon.html" "code" }}
         </div>
       </a>
