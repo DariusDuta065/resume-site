@@ -1,12 +1,12 @@
-{{ $statusSign := cond (eq .Params.Status "read") "Finished" "Reading" }}
+{{ $statusSign := cond (eq .Params.Status "read") "Read" "Reading" }}
 {{ $statusColour := cond (eq .Params.Status "read") "bg-green-400" "bg-cv-light-blue" }}
 
 <article
-  class="drop-shadow-md hover:drop-shadow-lg hover:duration-500 bg-neutral-100 dark:bg-neutral-700 p-4 sm:p-8 rounded-md justify-center items-center align-middle my-2">
+  class="drop-shadow-md hover:drop-shadow-lg hover:duration-500 bg-neutral-100 dark:bg-neutral-700 p-2 sm:p-4 rounded-md justify-center items-center align-middle my-2">
   <div class="flex items-center justify-between">
 
-    <div class="entry-header text-xl text-cv-dark-blue mr-4">
-      <a class="text-xl text-neutral-800 dark:text-neutral-50 underline decoration-transparent decoration-2 underline-offset-2 hover:decoration-primary-500"
+    <div class="text-cv-dark-blue mr-4">
+      <a class="text-md md:text-xl text-neutral-800 dark:text-neutral-50 underline decoration-transparent decoration-2 underline-offset-2 hover:decoration-primary-500"
         aria-label="{{ .Title | plainify }}" href="{{ .Permalink }}">
         {{- .Title }}
       </a>
@@ -16,7 +16,7 @@
         {{ end }}</div>
     </div>
 
-    <div class="{{ $statusColour }} rounded-md py-[2px] px-2 text-white font-semibold">
+    <div class="{{ $statusColour }} rounded-md py-[2px] px-2 text-white text-sm md:font-semibold">
       {{ $statusSign }}
     </div>
 

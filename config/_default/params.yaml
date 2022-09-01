@@ -16,7 +16,7 @@ assets:
   theme_color: "#2e2e33"
   msapplication_TileColor: "#2e2e33"
 
-  profilePic: images/profile_placeholder.png
+  profilePic: images/profile_pic.webp
 
 features:
   showScrollToTop: true

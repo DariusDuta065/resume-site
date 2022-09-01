@@ -21,7 +21,7 @@ module.exports = {
       },
 
       colors: {
-        "primary": colors.purple,
+        "primary": colors.gray,
         "cv-dark-blue": "#00232b",
         "cv-light-blue": "#708bb2",
         "cv-skills-gray": "#7f9195",
