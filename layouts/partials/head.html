@@ -40,12 +40,3 @@
 
 {{/*  Misc  */}}
 {{/*  {{- template "_internal/google_analytics.html" . -}}  */}}
-
-{{/*  JavaScript  */}}
-{{- $jsTheme := resources.Get "js/theme.js" -}}
-{{- $jsTheme = $jsTheme | resources.Minify | resources.Fingerprint "sha512" -}}
-{{- $jsNavbar := resources.Get "js/mobile-navbar.js" -}}
-{{- $jsNavbar = $jsNavbar | resources.Minify | resources.Fingerprint "sha512" -}}
-
-<script type="text/javascript" src="{{ $jsTheme.RelPermalink }}" integrity="{{ $jsTheme.Data.Integrity }}"></script>
-<script type="text/javascript" src="{{ $jsNavbar.RelPermalink }}" integrity="{{ $jsNavbar.Data.Integrity }}"></script>
