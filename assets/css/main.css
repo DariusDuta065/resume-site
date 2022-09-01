@@ -6,6 +6,30 @@ html, body {
 	vertical-align: baseline;
 }
 
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-Bold.woff2") format("woff2");
+}
+
 @tailwind base;
 @tailwind components;
 

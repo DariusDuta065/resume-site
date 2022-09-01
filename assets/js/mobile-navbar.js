@@ -1,4 +1,4 @@
-const NAVBAR_HEIGHT = 236; // px
+const NAVBAR_HEIGHT = 220; // px
 const TRANSITION_DURATION = 100; // ms
 
 toggleMobileNavbar = () => {
@@ -7,7 +7,6 @@ toggleMobileNavbar = () => {
 
   if (!isOpen) {
     drawer.classList.toggle("h-0");
-    drawer.classList.toggle("border");
     drawer.style.height = `${NAVBAR_HEIGHT}px`;
 
     setTimeout(() => {
@@ -16,7 +15,6 @@ toggleMobileNavbar = () => {
     }, TRANSITION_DURATION);
   } else {
     drawer.classList.toggle("h-0");
-    drawer.classList.toggle("border");
     drawer.style.height = `${NAVBAR_HEIGHT}px`;
 
     setTimeout(() => {

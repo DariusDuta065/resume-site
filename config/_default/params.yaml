@@ -9,10 +9,10 @@ metadata:
   ogUrl: https://dariusduta.dev
 
 assets:
-  favicon: favicon.ico
-  favicon16x16: favicon.ico
-  favicon32x32: favicon.ico
-  apple_touch_icon: favicon.ico
+  favicon: icons/favicon.ico
+  favicon16x16: icons/favicon.ico
+  favicon32x32: icons/favicon.ico
+  apple_touch_icon: icons/favicon.ico
   theme_color: "#2e2e33"
   msapplication_TileColor: "#2e2e33"
 

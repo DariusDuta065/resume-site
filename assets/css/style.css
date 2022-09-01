@@ -6,6 +6,42 @@ html, body {
   vertical-align: baseline;
 }
 
+@font-face {
+  font-family: "Fira Sans";
+
+  font-style: normal;
+
+  font-display: swap;
+
+  font-weight: 400;
+
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Sans";
+
+  font-style: normal;
+
+  font-display: swap;
+
+  font-weight: 600;
+
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Sans";
+
+  font-style: normal;
+
+  font-display: swap;
+
+  font-weight: 700;
+
+  src: url("/fonts/Fira_Sans/woff2/FiraSans-Bold.woff2") format("woff2");
+}
+
 /* ! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com */
 
 /*
@@ -1500,6 +1536,10 @@ body:has(#menu-controller:checked) {
   margin-left: 0.75rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -1756,11 +1796,6 @@ body:has(#menu-controller:checked) {
   border-color: rgb(212 212 212 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1801,6 +1836,21 @@ body:has(#menu-controller:checked) {
   background-color: rgb(74 222 128 / var(--tw-bg-opacity));
 }
 
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+.bg-green-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+}
+
+.bg-blue-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
 .stroke-neutral-500 {
   stroke: #737373;
 }
@@ -1827,6 +1877,14 @@ body:has(#menu-controller:checked) {
 
 .p-0 {
   padding: 0px;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .py-4 {
@@ -2230,6 +2288,11 @@ body:has(#menu-controller:checked) {
   background-color: rgb(38 38 38 / 0.5);
 }
 
+.dark .dark\:bg-neutral-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+}
+
 .dark .dark\:fill-white {
   fill: #fff;
 }
@@ -2371,19 +2434,14 @@ body:has(#menu-controller:checked) {
     padding-bottom: 1.5rem;
   }
 
-  .sm\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+  .sm\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .sm\:px-5 {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-  }
-
-  .sm\:px-4 {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .sm\:pt-2 {

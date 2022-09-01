@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <meta name="robots" content="{{ site.Params.metadata.robots }}">
-<link rel="canonical" href="{{ site.Params.metadata.canonical }}">
+<link rel="canonical" href="{{ .Permalink }}" />
 <meta name="description" content="{{ site.Params.metadata.description }}">
 
 <meta property="og:type" content="{{ site.Params.metadata.ogType }}">
@@ -16,9 +16,9 @@
 <title>{{ if .IsHome }}{{ else }}{{ if .Title }}{{ .Title }} | {{ end }}{{ end }}{{ site.Title }}</title>
 
 {{/*  Fonts  */}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
+{{/*  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap">  */}}
 
 {{/*  Stylesheets  */}}
 {{ $styles := resources.Get "/css/style.css" | postCSS }}
@@ -39,7 +39,7 @@
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
 
 {{/*  Misc  */}}
-{{- template "_internal/google_analytics.html" . -}}
+{{/*  {{- template "_internal/google_analytics.html" . -}}  */}}
 
 {{/*  JavaScript  */}}
 {{- $jsTheme := resources.Get "js/theme.js" -}}
