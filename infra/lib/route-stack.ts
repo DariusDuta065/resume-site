@@ -7,13 +7,13 @@ interface StackProps extends cdk.StackProps {
   domainName: string;
 }
 
-export class RouteStack extends cdk.Stack {
+export class Route53Stack extends cdk.Stack {
   public readonly hostedZone: route53.HostedZone;
 
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
-    const hostedZone = new route53.HostedZone(this, "InfraHostedZone", {
+    const hostedZone = new route53.HostedZone(this, "RouteHostedZone", {
       zoneName: props.domainName,
       comment: `${props.domainName} public zone`,
     });

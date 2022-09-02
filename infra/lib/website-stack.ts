@@ -17,7 +17,7 @@ interface StackProps extends cdk.StackProps {
   secretHeaderValue: string;
 }
 
-export class InfraStack extends cdk.Stack {
+export class WebsiteStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
