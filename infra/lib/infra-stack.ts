@@ -14,6 +14,7 @@ import { SSMParameterReader } from "./ssm-parameter-reader";
 interface StackProps extends cdk.StackProps {
   domainName: string;
   acmCertParameterName: string;
+  secretHeaderValue: string;
 }
 
 export class InfraStack extends cdk.Stack {
@@ -34,6 +35,11 @@ export class InfraStack extends cdk.Stack {
         principals: [new iam.AnyPrincipal()],
         actions: ["s3:GetObject", "s3:ListBucket"],
         resources: [`${bucket.bucketArn}`, `${bucket.bucketArn}/*`],
+        conditions: {
+          StringEquals: {
+            "aws:Referer": props.secretHeaderValue,
+          },
+        },
       })
     );
 
@@ -48,13 +54,18 @@ export class InfraStack extends cdk.Stack {
       acmCertArn
     );
 
-    const s3Origin = new origins.S3Origin(bucket);
+    const s3Origin = new origins.S3Origin(bucket, {
+      customHeaders: {
+        Referer: props.secretHeaderValue,
+      },
+    });
 
     const distribution = new cf.Distribution(this, "InfraCloudfront", {
       defaultBehavior: { origin: s3Origin },
       certificate: acmCert,
       domainNames: [`${props.domainName}`],
       comment: `${props.domainName}`,
+      priceClass: cf.PriceClass.PRICE_CLASS_100,
     });
 
     ["fonts", "images", "icons", "css", "js", "*"].forEach((path) => {
