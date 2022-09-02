@@ -5,6 +5,7 @@
 
 <head>
   {{ partial "head.html" . }}
+  {{- partial "javascript.html" -}}
 </head>
 
 <body class="flex flex-col h-screen bg-neutral dark:bg-neutral-800 dark:text-neutral">
@@ -19,7 +20,6 @@
     {{ end }}
   </div>
 
-  {{- partial "javascript.html" -}}
 </body>
 
 </html>

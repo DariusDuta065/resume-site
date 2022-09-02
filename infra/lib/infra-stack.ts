@@ -8,12 +8,12 @@ import * as route53 from "aws-cdk-lib/aws-route53";
 import * as cert from "aws-cdk-lib/aws-certificatemanager";
 import * as targets from "aws-cdk-lib/aws-route53-targets";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
-import { CachePolicy } from "aws-cdk-lib/aws-cloudfront";
+
+import { SSMParameterReader } from "./ssm-parameter-reader";
 
 interface StackProps extends cdk.StackProps {
   domainName: string;
-  hostedZoneID: string;
-  acmCertArn: string;
+  acmCertParameterName: string;
 }
 
 export class InfraStack extends cdk.Stack {
@@ -37,10 +37,15 @@ export class InfraStack extends cdk.Stack {
       })
     );
 
+    const acmCertArn = new SSMParameterReader(this, "InfraAcmCertificateArn", {
+      parameterName: props.acmCertParameterName,
+      region: "us-east-1",
+    }).getParameterValue();
+
     const acmCert = cert.Certificate.fromCertificateArn(
       this,
       "InfraCert",
-      props.acmCertArn
+      acmCertArn
     );
 
     const s3Origin = new origins.S3Origin(bucket);
@@ -55,7 +60,7 @@ export class InfraStack extends cdk.Stack {
     ["fonts", "images", "icons", "css", "js", "*"].forEach((path) => {
       distribution.addBehavior(`/${path}/*`, s3Origin, {
         compress: true,
-        cachePolicy: CachePolicy.CACHING_OPTIMIZED,
+        cachePolicy: cf.CachePolicy.CACHING_OPTIMIZED,
       });
     });
 

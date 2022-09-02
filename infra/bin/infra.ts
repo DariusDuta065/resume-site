@@ -8,6 +8,7 @@ import { RouteStack } from "../lib/route-stack";
 const app = new cdk.App();
 
 const DOMAIN_NAME = "dariusduta.dev";
+const ACM_CERT_SSM_PARAM = `/${DOMAIN_NAME}/acm-cert-arn`;
 
 const routeStack = new RouteStack(app, "RouteStack", {
   domainName: DOMAIN_NAME,
@@ -18,23 +19,19 @@ const routeStack = new RouteStack(app, "RouteStack", {
   },
 });
 
-const acmStack = new AcmStack(app, "AcmStack", {
+new AcmStack(app, "AcmStack", {
   domainName: DOMAIN_NAME,
   hostedZone: routeStack.hostedZone,
+  acmCertParameterName: ACM_CERT_SSM_PARAM,
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: "us-east-1",
   },
 });
 
-// const acmCertArn = `${acmStack.acmCert.certificateArn}`;
-const acmCertArn = `arn:aws:acm:us-east-1:590624982938:certificate/aa6464c9-e009-4aef-be57-5eb813bb1670`;
-const hostedZoneID = `Z0615999Z4AFNXXABFT0`;
-
 new InfraStack(app, "InfraStack", {
   domainName: DOMAIN_NAME,
-  acmCertArn: acmCertArn,
-  hostedZoneID: hostedZoneID,
+  acmCertParameterName: ACM_CERT_SSM_PARAM,
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: process.env.CDK_DEFAULT_REGION,
