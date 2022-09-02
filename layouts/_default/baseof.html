@@ -15,7 +15,7 @@
     {{ block "main" . }}{{ end }}
     {{ partial "scroll-to-top.html" . }}
 
-    {{ if not .IsHome }}
+    {{ if and (not .IsHome) (ne .Page.Kind "404") }}
     {{ partial "footer.html" . }}
     {{ end }}
   </div>

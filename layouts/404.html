@@ -1,7 +1,13 @@
 {{ define "main"}}
-    <main id="main">
-      <div>
-       <h1 id="title"><a href="{{ "" | relURL }}">Go Home</a></h1>
+<main class="flex flex-grow justify-center md:justify-start last:w-full h-max">
+  <div
+    class="flex flex-col md:flex-row w-full my-8 md:my-0 mx-3 justify-center items-center max-w-[500px] md:max-w-none">
+    <h1 class="prose dark:prose-invert text-xl">
+      <div class="mb-4 text-2xl">Page was not found</div>
+      <div class="text-center">
+        {{- partial "link.html" (dict "text" "Homepage" "link" "/" "target" "_self") -}}
       </div>
-    </main>
+    </h1>
+  </div>
+</main>
 {{ end }}
