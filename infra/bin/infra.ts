@@ -5,6 +5,7 @@ import { Tags } from "aws-cdk-lib";
 import { AcmStack } from "../lib/acm-stack";
 import { Route53Stack } from "../lib/route-stack";
 import { WebsiteStack } from "../lib/website-stack";
+import { CodePipelineStack } from "../lib/pipeline-stack";
 
 const app = new cdk.App();
 
@@ -46,6 +47,14 @@ const infraStack = new WebsiteStack(app, "WebsiteStack", {
   },
 });
 
-[routeStack, acmStack, infraStack].forEach((stack) => {
+const codePipelineStack = new CodePipelineStack(app, "CodePipelineStack", {
+  stackName: `${STACK_PREFIX}-CodePipeline`,
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION,
+  },
+});
+
+[routeStack, acmStack, infraStack, codePipelineStack].forEach((stack) => {
   Tags.of(stack).add("Project", "ResumeSite");
 });
