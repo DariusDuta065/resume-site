@@ -28,7 +28,7 @@ export class SSMParameterReader extends AwsCustomResource {
         Name: parameterName,
       },
       region,
-      physicalResourceId: PhysicalResourceId.of(Date.now().toString()),
+      physicalResourceId: PhysicalResourceId.of(name), // Date.now().toString()
     };
 
     super(scope, name, {

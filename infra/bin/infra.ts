@@ -9,11 +9,22 @@ import { CodePipelineStack } from "../lib/pipeline-stack";
 
 const app = new cdk.App();
 
+// Parameters
 const STACK_PREFIX = "Resume";
 const DOMAIN_NAME = "dariusduta.dev";
 const SECRET_HEADER_VALUE = "RD6o3aJ9tLsHxNHB";
-const ACM_CERT_SSM_PARAM = `/${DOMAIN_NAME}/acm-cert-arn`;
+const ACM_CERT_SSM_PARAM = "/dariusduta.dev/acm-cert-arn";
+const GITHUB_PARAMS = {
+  branch: "master",
+  owner: "dduta065",
+  repo: "resume-site",
+};
+const SECRETS_MANAGER_PARAMS = {
+  secretName: "dariusduta.dev",
+  githubSecretField: "github-oauth-token",
+};
 
+// CDK Stacks
 const routeStack = new Route53Stack(app, "Route53Stack", {
   domainName: DOMAIN_NAME,
   terminationProtection: true,
@@ -48,6 +59,20 @@ const infraStack = new WebsiteStack(app, "WebsiteStack", {
 });
 
 const codePipelineStack = new CodePipelineStack(app, "CodePipelineStack", {
+  domainName: DOMAIN_NAME,
+  cloudFrontDistributionID: infraStack.cloudFrontDistributionID,
+
+  secretsManager: {
+    secretName: SECRETS_MANAGER_PARAMS.secretName,
+    githubSecretField: SECRETS_MANAGER_PARAMS.githubSecretField,
+  },
+
+  gitHubParams: {
+    branch: GITHUB_PARAMS.branch,
+    owner: GITHUB_PARAMS.owner,
+    repo: GITHUB_PARAMS.repo,
+  },
+
   stackName: `${STACK_PREFIX}-CodePipeline`,
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,

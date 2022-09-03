@@ -9,7 +9,19 @@ import * as codepipeline from "aws-cdk-lib/aws-codepipeline";
 import * as codepipeline_actions from "aws-cdk-lib/aws-codepipeline-actions";
 
 interface StackProps extends cdk.StackProps {
-  //
+  domainName: string;
+  cloudFrontDistributionID: string;
+
+  secretsManager: {
+    secretName: string;
+    githubSecretField: string;
+  };
+
+  gitHubParams: {
+    branch: string;
+    owner: string;
+    repo: string;
+  };
 }
 
 export class CodePipelineStack extends cdk.Stack {
@@ -41,13 +53,18 @@ export class CodePipelineStack extends cdk.Stack {
     codePipelineProject.addStage({
       stageName: "Source",
       actions: [
-        new codepipeline_actions.CodeStarConnectionsSourceAction({
+        new codepipeline_actions.GitHubSourceAction({
           actionName: "Source",
-          branch: "master", // TODO: parameterise
-          owner: "dduta065", // TODO: parameterise
-          repo: "resume-site", // TODO: parameterise
           output: sourceOutput,
-          connectionArn: `arn:aws:codestar-connections:eu-west-2:590624982938:connection/554c0bee-963a-433f-982c-6ebbc350fb8d`, // TODO: parameterise
+          repo: props.gitHubParams.repo,
+          owner: props.gitHubParams.owner,
+          branch: props.gitHubParams.branch,
+          oauthToken: cdk.SecretValue.secretsManager(
+            props.secretsManager.secretName,
+            {
+              jsonField: props.secretsManager.githubSecretField,
+            }
+          ),
         }),
       ],
     });
@@ -69,7 +86,7 @@ export class CodePipelineStack extends cdk.Stack {
           bucket: s3.Bucket.fromBucketName(
             this,
             "ResumeBucket",
-            "dariusduta.dev" // TODO: parameterise
+            props.domainName
           ),
         }),
       ],
@@ -87,7 +104,7 @@ export class CodePipelineStack extends cdk.Stack {
             "InvalidateCloudFront"
           ),
           userParameters: {
-            distributionId: "E3MHH1WT6UWGI7", // TODO: parameterise
+            distributionId: props.cloudFrontDistributionID,
             objectPaths: ["/*"],
           },
         }),
