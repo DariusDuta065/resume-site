@@ -1,7 +1,9 @@
+import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 
 import * as s3 from "aws-cdk-lib/aws-s3";
+import * as iam from "aws-cdk-lib/aws-iam";
 import * as ssm from "aws-cdk-lib/aws-ssm";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as codebuild from "aws-cdk-lib/aws-codebuild";
@@ -43,11 +45,14 @@ export class CodePipelineStack extends cdk.Stack {
     );
 
     const sourceOutput = new codepipeline.Artifact();
-    const sourceOutput2 = new codepipeline.Artifact();
+    const buildOutput = new codepipeline.Artifact();
 
     const codePipelineProject = new codepipeline.Pipeline(
       this,
-      "CodePipelineProject"
+      "CodePipelineProject",
+      {
+        pipelineName: "Resume-Site-Pipeline",
+      }
     );
 
     codePipelineProject.addStage({
@@ -73,16 +78,16 @@ export class CodePipelineStack extends cdk.Stack {
       stageName: "Build",
       actions: [
         new codepipeline_actions.CodeBuildAction({
+          runOrder: 1,
           actionName: "Build",
           input: sourceOutput,
           project: codeBuildProject,
-          outputs: [sourceOutput2],
-          runOrder: 1,
+          outputs: [buildOutput],
         }),
         new codepipeline_actions.S3DeployAction({
-          actionName: "Upload",
-          input: sourceOutput2,
           runOrder: 2,
+          actionName: "Upload",
+          input: buildOutput,
           bucket: s3.Bucket.fromBucketName(
             this,
             "ResumeBucket",
@@ -92,17 +97,35 @@ export class CodePipelineStack extends cdk.Stack {
       ],
     });
 
+    const invalidateCacheLambda = new lambda.Function(
+      this,
+      "InvalidateCacheLambda",
+      {
+        code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/")),
+        memorySize: 1024,
+        timeout: cdk.Duration.minutes(10),
+        runtime: lambda.Runtime.PYTHON_3_9,
+        handler: "invalidate-cloudfront.lambda_handler",
+      }
+    );
+    invalidateCacheLambda.addToRolePolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        actions: [
+          "codepipeline:PutJobFailureResult",
+          "codepipeline:PutJobSuccessResult",
+          "cloudfront:CreateInvalidation",
+        ],
+        resources: ["*"],
+      })
+    );
+
     codePipelineProject.addStage({
       stageName: "Deploy",
       actions: [
-        // TODO: automate InvalidateCloudFrontLambda creation via CDK
         new codepipeline_actions.LambdaInvokeAction({
           actionName: "InvalidateCloudFront",
-          lambda: lambda.Function.fromFunctionName(
-            this,
-            "InvalidateCloudFrontLambda",
-            "InvalidateCloudFront"
-          ),
+          lambda: invalidateCacheLambda,
           userParameters: {
             distributionId: props.cloudFrontDistributionID,
             objectPaths: ["/*"],
