@@ -18,6 +18,8 @@ interface StackProps extends cdk.StackProps {
 }
 
 export class WebsiteStack extends cdk.Stack {
+  public readonly cloudFrontDistributionID: string;
+
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
@@ -61,17 +63,39 @@ export class WebsiteStack extends cdk.Stack {
     });
 
     const distribution = new cf.Distribution(this, "InfraCloudfront", {
-      defaultBehavior: { origin: s3Origin },
+      defaultBehavior: {
+        origin: s3Origin,
+        cachePolicy: cf.CachePolicy.CACHING_OPTIMIZED,
+      },
       certificate: acmCert,
       domainNames: [`${props.domainName}`],
       comment: `${props.domainName}`,
       priceClass: cf.PriceClass.PRICE_CLASS_100,
     });
+    this.cloudFrontDistributionID = distribution.distributionId;
 
-    ["fonts", "images", "icons", "css", "js", "*"].forEach((path) => {
+    const assetsResponsePolicy = new cf.ResponseHeadersPolicy(
+      this,
+      "HugoAssetsResponsePolicy",
+      {
+        customHeadersBehavior: {
+          customHeaders: [
+            {
+              header: "Cache-Control",
+              value: "max-age=31536000",
+              override: true,
+            },
+          ],
+        },
+      }
+    );
+
+    const cachePaths = ["fonts", "images", "icons", "css", "js"];
+    cachePaths.forEach((path) => {
       distribution.addBehavior(`/${path}/*`, s3Origin, {
         compress: true,
         cachePolicy: cf.CachePolicy.CACHING_OPTIMIZED,
+        responseHeadersPolicy: assetsResponsePolicy,
       });
     });
 
