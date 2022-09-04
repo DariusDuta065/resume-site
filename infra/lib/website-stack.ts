@@ -10,11 +10,12 @@ import * as targets from "aws-cdk-lib/aws-route53-targets";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 
 import { SSMParameterReader } from "./ssm-parameter-reader";
+import { SecretsManagerParams } from "../bin/config";
 
 interface StackProps extends cdk.StackProps {
   domainName: string;
   acmCertParameterName: string;
-  secretHeaderValue: string;
+  secretsManagerParams: SecretsManagerParams;
 }
 
 export class WebsiteStack extends cdk.Stack {
@@ -22,6 +23,13 @@ export class WebsiteStack extends cdk.Stack {
 
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
+
+    const refererHeaderValue = cdk.SecretValue.secretsManager(
+      props.secretsManagerParams.secretName,
+      {
+        jsonField: props.secretsManagerParams.secretHeaderField,
+      }
+    );
 
     const bucket = new s3.Bucket(this, "InfraBucket", {
       bucketName: `${props.domainName}`,
@@ -39,7 +47,7 @@ export class WebsiteStack extends cdk.Stack {
         resources: [`${bucket.bucketArn}`, `${bucket.bucketArn}/*`],
         conditions: {
           StringEquals: {
-            "aws:Referer": props.secretHeaderValue,
+            "aws:Referer": refererHeaderValue.unsafeUnwrap(),
           },
         },
       })
@@ -58,7 +66,7 @@ export class WebsiteStack extends cdk.Stack {
 
     const s3Origin = new origins.S3Origin(bucket, {
       customHeaders: {
-        Referer: props.secretHeaderValue,
+        Referer: refererHeaderValue.unsafeUnwrap(),
       },
     });
 

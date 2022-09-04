@@ -10,20 +10,13 @@ import * as codebuild from "aws-cdk-lib/aws-codebuild";
 import * as codepipeline from "aws-cdk-lib/aws-codepipeline";
 import * as codepipeline_actions from "aws-cdk-lib/aws-codepipeline-actions";
 
+import { GitHubParams, SecretsManagerParams } from "../bin/config";
+
 interface StackProps extends cdk.StackProps {
   domainName: string;
+  gitHubParams: GitHubParams;
   cloudFrontDistributionID: string;
-
-  secretsManager: {
-    secretName: string;
-    githubSecretField: string;
-  };
-
-  gitHubParams: {
-    branch: string;
-    owner: string;
-    repo: string;
-  };
+  secretsManagerParams: SecretsManagerParams;
 }
 
 export class CodePipelineStack extends cdk.Stack {
@@ -65,9 +58,9 @@ export class CodePipelineStack extends cdk.Stack {
           owner: props.gitHubParams.owner,
           branch: props.gitHubParams.branch,
           oauthToken: cdk.SecretValue.secretsManager(
-            props.secretsManager.secretName,
+            props.secretsManagerParams.secretName,
             {
-              jsonField: props.secretsManager.githubSecretField,
+              jsonField: props.secretsManagerParams.githubSecretField,
             }
           ),
         }),
