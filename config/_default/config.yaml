@@ -2,6 +2,7 @@ baseURL: 'https://dariusduta.dev/'
 languageCode: 'en-gb'
 title: 'Darius Duta'
 pluralizeListTitles: false
+enableRobotsTXT: true
 
 googleAnalytics: G-EYY3066F76
 

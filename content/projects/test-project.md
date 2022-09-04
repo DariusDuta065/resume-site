@@ -4,7 +4,7 @@ date: 2022-09-03T01:29:28+01:00
 
 author: "Darius Duta"
 date: "2022-08-25"
-tags: ["markdown", "text"]
+tags: ["project"]
 
 math: true
 showMeta: true
@@ -18,11 +18,33 @@ showAuthor: false
 showDate: true
 ---
 
-**Insert Lead paragraph here.**
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+<!--more-->
 
 ## New Cool Posts
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae. Morbi non arcu risus quis varius quam quisque id diam. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Volutpat consequat mauris nunc congue nisi. At varius vel pharetra vel turpis nunc eget. Metus aliquam eleifend mi in nulla. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Aliquam ut porttitor leo a diam. Pellentesque eu tincidunt tortor aliquam nulla. Velit scelerisque in dictum non consectetur a. Interdum posuere lorem ipsum dolor. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Libero volutpat sed cras ornare arcu. Adipiscing commodo elit at imperdiet. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.
+Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae. Morbi non arcu risus quis varius quam quisque id diam.
+
+```bash
+QUERY='DistributionList.Items[? Aliases.Items[0] == `dariusduta.dev`].Id | [0]' 
+DIST=$(aws cloudfront list-distributions --query $QUERY | tr -d '\"')
+
+echo "Building.."
+yarn build > /dev/null 2>&1
+echo "Uploading files to S3.."
+aws s3 cp \
+  --recursive ./public s3://dariusduta.dev > /dev/null 2>&1
+# --cache-control max-age=31536000
+
+echo "Purging CloudFront cache.."
+aws cloudfront create-invalidation \
+  --distribution-id $DIST \
+  --paths '/*' > /dev/null 2>&1
+echo "Done..."
+```
+
+Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Volutpat consequat mauris nunc congue nisi. At varius vel pharetra vel turpis nunc eget. Metus aliquam eleifend mi in nulla. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Aliquam ut porttitor leo a diam. Pellentesque eu tincidunt tortor aliquam nulla. Velit scelerisque in dictum non consectetur a. Interdum posuere lorem ipsum dolor. Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Libero volutpat sed cras ornare arcu. Adipiscing commodo elit at imperdiet. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim.
 
 Diam ut venenatis tellus in metus vulputate eu scelerisque felis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Bibendum neque egestas congue quisque egestas. Tortor at risus viverra adipiscing at in. Sed cras ornare arcu dui vivamus arcu. Duis at consectetur lorem donec massa sapien faucibus et. Nullam ac tortor vitae purus faucibus ornare suspendisse. Adipiscing elit pellentesque habitant morbi tristique senectus. Elementum sagittis vitae et leo duis ut diam quam. Felis donec et odio pellentesque diam. Eu nisl nunc mi ipsum. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Gravida arcu ac tortor dignissim convallis aenean et. Adipiscing enim eu turpis egestas pretium aenean pharetra magna ac. Turpis egestas sed tempus urna et pharetra pharetra. Amet dictum sit amet justo donec enim diam vulputate ut. Nullam ac tortor vitae purus faucibus ornare suspendisse.
 

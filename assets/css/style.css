@@ -644,6 +644,14 @@ video {
   color: var(--tw-prose-links);
   text-decoration: underline;
   font-weight: 500;
+  -webkit-text-decoration-color: rgb(209 213 219 / 1);
+          text-decoration-color: rgb(209 213 219 / 1);
+}
+
+.prose :where(a):not(:where([class~="not-prose"] *)):hover {
+  text-decoration: none;
+  background-color: rgb(75 85 99 / 1);
+  border-radius: 0.09rem;
 }
 
 .prose :where(strong):not(:where([class~="not-prose"] *)) {
@@ -836,7 +844,7 @@ video {
 }
 
 .prose :where(a code):not(:where([class~="not-prose"] *)) {
-  color: inherit;
+  color: var(--tw-prose-code);
 }
 
 .prose :where(h1 code):not(:where([class~="not-prose"] *)) {
@@ -1085,6 +1093,20 @@ video {
   margin-bottom: 0;
 }
 
+.prose :where(kbd):not(:where([class~="not-prose"] *)) {
+  background-color: rgb(229 229 229 / 1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.prose :where(mark):not(:where([class~="not-prose"] *)) {
+  color: rgb(38 38 38 / 1);
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.12rem;
+}
+
 .prose-sm :where(.prose > ul > li p):not(:where([class~="not-prose"] *)) {
   margin-top: 0.5714286em;
   margin-bottom: 0.5714286em;
@@ -1301,8 +1323,6 @@ body:has(#menu-controller:checked) {
 
 /* Table of Contents */
 
-/* Table of Contents */
-
 .toc ul, 
 .toc li {
   list-style-type: none;
@@ -1480,6 +1500,10 @@ body:has(#menu-controller:checked) {
   margin-bottom: 0.5rem;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mt-0 {
   margin-top: 0px;
 }
@@ -1498,10 +1522,6 @@ body:has(#menu-controller:checked) {
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
 }
 
 .mt-2 {
@@ -1556,8 +1576,18 @@ body:has(#menu-controller:checked) {
   display: inline-flex;
 }
 
+.table {
+  display: table;
+}
+
 .hidden {
   display: none;
+}
+
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
 }
 
 .h-full {
@@ -1566,12 +1596,6 @@ body:has(#menu-controller:checked) {
 
 .h-2\/5 {
   height: 40%;
-}
-
-.h-max {
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
 }
 
 .h-\[450px\] {
@@ -1938,6 +1962,11 @@ body:has(#menu-controller:checked) {
   vertical-align: bottom;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1951,11 +1980,6 @@ body:has(#menu-controller:checked) {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 
 .text-3xl {
@@ -2199,6 +2223,19 @@ body:has(#menu-controller:checked) {
   --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
   --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
   --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+}
+
+.dark .dark\:prose-invert :where(a):not(:where([class~="not-prose"] *)) {
+  -webkit-text-decoration-color: rgb(82 82 82 / 1);
+          text-decoration-color: rgb(82 82 82 / 1);
+}
+
+.dark .dark\:prose-invert :where(kbd):not(:where([class~="not-prose"] *)) {
+  color: rgb(229 229 229 / 1);
+  background-color: rgb(64 64 64 / 1);
+}
+
+.dark .dark\:prose-invert :where(mark):not(:where([class~="not-prose"] *)) {
 }
 
 .dark .dark\:flex {
