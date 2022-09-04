@@ -16,6 +16,7 @@ showScrollToTop: true
 
 showAuthor: false
 showDate: true
+draft: false
 ---
 
 **Insert Lead paragraph here.**

@@ -7,6 +7,9 @@ enableRobotsTXT: true
 googleAnalytics: G-EYY3066F76
 
 markup:
+  highlight:
+    noClasses: true
+
   tableOfContents:
     ordered: false
     startLevel: 1

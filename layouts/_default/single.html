@@ -1,7 +1,6 @@
 {{define "main"}}
-<main class="flex flex-col flex-grow p-0 px-2 sm:px-0 self-center sm:w-4/5 lg:max-w-4xl">
+<main class="flex flex-col flex-grow p-0 px-2 sm:px-4 self-center w-full lg:max-w-5xl">
   <div class="flex flex-col container self-center">
-    {{/*  sm:w-2/3 lg:max-w-[70%]  */}}
 
     {{ if .Page.Params.ShowBreadCrumbs | default true }}
     <div class="text-lg pt-2 px-4 sm:pt-2">
@@ -22,12 +21,12 @@
       {{ end }}
     </div>
 
-    <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert px-4">
+    <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
 
       {{ if .Page.Params.ShowToc | default false }}
       <div class="order-first pt-4 px-0 lg:pt-0 lg:max-w-xs lg:order-last">
         <div
-          class="py-1 ml-5 pl-2 toc lg:border-l rounded-lg lg:rounded-none border-2 lg:border-0 border-neutral-300 dark:border-neutral-600 lg:sticky lg:top-10 print:hidden w-[15rem]">
+          class="py-1 ml-2 pl-2 toc lg:border-l rounded-lg max-w-[inherit] lg:rounded-none border-2 lg:border-0 border-neutral-300 dark:border-neutral-600 lg:sticky lg:top-10 print:hidden w-[15rem]">
 
           <div class="pt-2 pl-2 -mb-2 text-lg text-neutral-500 dark:text-neutral-100 lg:hidden">
             Contents

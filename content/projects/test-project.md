@@ -22,7 +22,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 <!--more-->
 
-## New Cool Posts
+## New Cool Posts That Have Long Titles
 
 Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae. Morbi non arcu risus quis varius quam quisque id diam.
 
