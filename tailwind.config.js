@@ -19,12 +19,12 @@ module.exports = {
 
             a: {
               textDecoration: "underline",
-              textDecorationColor: theme("colors.primary.300 / 1"),
+              textDecorationColor: theme("colors.purple.300 / 1"),
               fontWeight: "500",
               "&:hover": {
-                color: theme("colors.neutral.DEFAULT / 1"),
+                color: "white", // theme("colors.neutral.DEFAULT / 1"),
                 textDecoration: "none",
-                backgroundColor: theme("colors.primary.600 / 1"),
+                backgroundColor: theme("colors.purple.600 / 1"),
                 borderRadius: "0.09rem",
               },
             },

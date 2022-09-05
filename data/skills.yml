@@ -1,0 +1,47 @@
+personal:
+  - text: Effective communication skills
+  - text: Adaptability and flexibility - can work both as part of a team and by myself
+  - text: Attention to details and client requirements
+  - text: Curiosity in new technologies and thinking outside the box mindset
+  - text: Work ethic and good time management making sure I respect project deadlines
+
+technical:
+  - text: "**Programming languages**"
+    items:
+      - JavaScript (TypeScript)
+      - Node.js
+      - PHP
+      - Python
+      - Golang
+  - text: "**SQL**"
+    items:
+      - MySQL
+      - PostgreSQL
+      - SQL Server
+      - SQLite
+  - text: "**NoSQL**"
+    items:
+      - AWS DynamoDB
+      - Redis
+      - MongoDB
+      - Elasticsearch
+  - text: "**Front-end**"
+    items:
+      - ReactJS (Redux, i18n, SSR)
+      - VueJS
+      - NextJS
+      - Hugo
+      - Webpack (code splitting)
+  - text: "**Back-end**"
+    items:
+      - Laravel
+      - NestJS
+      - Django
+      - AWS Lambda
+      - ASP.NET Core Web API
+  - text: "**DevOps & automation**"
+    items:
+      - AWS CDK
+      - AWS CloudFormation
+      - Ansible
+      - Terraform

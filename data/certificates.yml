@@ -1,0 +1,31 @@
+certificates:
+  -
+    year: 2022
+    name: AWS Certified Solutions Architect — Professional
+    link: https://www.credly.com/badges/11268b12-6f2f-40cc-b023-627952cd5ee0/public_url
+    image: images/aws-certified-solutions-architect-professional.png
+  -
+    year: 2022
+    name: AWS Certified DevOps Engineer — Professional
+    link: https://www.credly.com/badges/ba1ff728-f578-4d9b-be61-34084a90fbaa/public_url
+    image: images/aws-certified-devops-engineer-professional.png
+  -
+    year: 2022
+    name: AWS Certified Solutions Architect — Associate
+    link: https://www.credly.com/badges/c85b2220-8895-4cfe-a70e-dea0e02e7ada/public_url
+    image: images/aws-certified-solutions-architect-associate.png
+  -
+    year: 2022
+    name: AWS Certified SysOps Administrator — Associate
+    link: https://www.credly.com/badges/4058ed04-2ff3-4d40-8b48-df49893691c4/public_url
+    image: images/aws-certified-sysops-administrator-associate.png
+  - 
+    year: 2022
+    name: AWS Certified Cloud Practitioner
+    link: https://www.credly.com/badges/2b778374-3356-48a5-98ea-37ea5e8f376d/public_url
+    image: images/aws-certified-cloud-practitioner.png
+  - 
+    year: 2018
+    name: Certified Scrum Master
+    link: https://drive.google.com/file/d/1sO0Pw82swju9uoDe9DXkmFlMIZWlX_DO/view?usp=sharing
+    image: images/certified-scrum-master-scrum-alliance.webp

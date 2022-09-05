@@ -1,0 +1,11 @@
+
+<span class="w-2 h-2 bg-purple-600 dark:bg-purple-400 inline-block relative top-[-2px] align-middle rounded-lg"></span>
+<a href="{{ .Get "url" | default "" }}" target="{{ .Get "target" | default "_blank"}}" class="font-bold text-2xl group">
+  {{- .Get "name" -}}
+</a>
+{{ if eq (.Get "target" | default "_blank") "_blank" }}
+{{ $icon := resources.Get (print "icons/link.svg") }}
+<span class="relative w-3 h-3 inline-block align-middle top-[-2px] left-[1px] fill-gray-300 dark:fill-gray-500 group-hover:fill-gray-500 dark:group-hover:fill-gray-300">
+  {{ $icon.Content | safeHTML }}
+</span>
+{{ end }}

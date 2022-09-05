@@ -1,4 +1,4 @@
-const NAVBAR_HEIGHT = 220; // px
+const NAVBAR_HEIGHT = 176; // px
 const TRANSITION_DURATION = 100; // ms
 
 toggleMobileNavbar = () => {

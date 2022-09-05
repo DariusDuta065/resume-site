@@ -16,7 +16,7 @@
     "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
     "watch:hugo": "hugo server",
     "build": "hugo --minify",
-    "upload": "yarn build && aws s3 cp --recursive ./public s3://dariusduta.dev --cache-control max-age=31536000",
+    "upload": "aws s3 cp --recursive ./public s3://dariusduta.dev --cache-control max-age=31536000",
     "deploy": "./deploy.sh"
   }
 }

@@ -7,15 +7,11 @@ main:
     name: Resume
     weight: 2
     url: /resume
-  - identifier: achievements
-    name: Achievements
-    weight: 3
-    url: /achievements
   - identifier: projects
     name: Projects
-    weight: 4
+    weight: 3
     url: /projects
   - identifier: books
     name: Books
-    weight: 5
+    weight: 4
     url: /books

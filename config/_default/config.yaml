@@ -3,12 +3,17 @@ languageCode: 'en-gb'
 title: 'Darius Duta'
 pluralizeListTitles: false
 enableRobotsTXT: true
+enableEmoji: true
 
 googleAnalytics: G-EYY3066F76
 
 markup:
   highlight:
     noClasses: true
+
+  goldmark:
+    renderer:
+      unsafe: true
 
   tableOfContents:
     ordered: false
