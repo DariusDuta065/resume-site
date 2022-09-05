@@ -1,5 +1,7 @@
+
 {{define "main"}}
-<main class="flex flex-col flex-grow p-0 px-2 sm:px-4 self-center w-full lg:max-w-5xl">
+{{ $width := .Page.Params.ContentWidthClass | default "w-full lg:max-w-5xl" }}
+<main class="flex flex-col flex-grow p-0 px-2 sm:px-4 self-center {{ $width }}">
   <div class="flex flex-col container self-center">
 
     {{ if .Page.Params.ShowBreadCrumbs | default true }}

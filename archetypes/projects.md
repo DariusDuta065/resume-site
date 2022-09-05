@@ -5,6 +5,7 @@ date: {{ .Date }}
 author: "Darius Duta"
 date: "2022-08-25"
 tags: ["markdown", "text"]
+contentWidthClass: "w-full lg:max-w-5xl"
 
 math: true
 showMeta: true

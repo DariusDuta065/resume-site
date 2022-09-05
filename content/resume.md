@@ -5,6 +5,8 @@ date: 2021-12-18T11:10:36+08:00
 description: A test with @tailwindcss/typography & Prose
 
 showHeadingAnchors: false
+showScrollToTop: true
+contentWidthClass: "max-w-3xl"
 ---
 
 {{< resume/intro >}}
