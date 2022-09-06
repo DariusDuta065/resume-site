@@ -1,0 +1,10 @@
+{{ $iconPath := (printf "icons/%s.svg" (.Get "icon")) }}
+{{ $icon := resources.Get $iconPath }}
+
+<span class="relative w-6 h-6 inline-block align-middle left-[1px] fill-purple-500 dark:fill-purple-300"
+  style="top: {{ .Get "top" | default "-2px" }};">
+  {{ $icon.Content | safeHTML }}
+</span>
+<span class="font-bold text-2xl">
+  {{- .Get "name" -}}
+</span>

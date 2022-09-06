@@ -1963,36 +1963,24 @@ body:has(#menu-controller:checked) {
   bottom: 0px;
 }
 
-.top-\[calc\(100vh-3\.5rem\)\] {
-  top: calc(100vh - 3.5rem);
+.top-\[calc\(100vh-3\.2rem\)\] {
+  top: calc(100vh - 3.2rem);
 }
 
 .top-0 {
   top: 0px;
 }
 
-.top-\[-2px\] {
-  top: -2px;
+.top-\[-1px\] {
+  top: -1px;
 }
 
 .left-\[1px\] {
   left: 1px;
 }
 
-.top-\[-3px\] {
-  top: -3px;
-}
-
-.top-\[-0px\] {
-  top: -0px;
-}
-
-.top-\[-1px\] {
-  top: -1px;
-}
-
-.top-\[calc\(100vh-3\.2rem\)\] {
-  top: calc(100vh - 3.2rem);
+.top-\[-2px\] {
+  top: -2px;
 }
 
 .-z-50 {
@@ -2061,11 +2049,6 @@ body:has(#menu-controller:checked) {
   margin-right: 0px;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -2124,6 +2107,10 @@ body:has(#menu-controller:checked) {
 
 .-mt-4 {
   margin-top: -1rem;
+}
+
+.-mb-8 {
+  margin-bottom: -2rem;
 }
 
 .-mt-2 {
@@ -2322,10 +2309,6 @@ body:has(#menu-controller:checked) {
   max-width: 48rem;
 }
 
-.max-w-2xl {
-  max-width: 42rem;
-}
-
 .flex-grow {
   flex-grow: 1;
 }
@@ -2364,10 +2347,6 @@ body:has(#menu-controller:checked) {
   align-items: flex-start;
 }
 
-.items-end {
-  align-items: flex-end;
-}
-
 .items-center {
   align-items: center;
 }
@@ -2386,18 +2365,6 @@ body:has(#menu-controller:checked) {
 
 .gap-2 {
   gap: 0.5rem;
-}
-
-.gap-1 {
-  gap: 0.25rem;
-}
-
-.gap-4 {
-  gap: 1rem;
-}
-
-.gap-8 {
-  gap: 2rem;
 }
 
 .self-start {
@@ -2451,9 +2418,9 @@ body:has(#menu-controller:checked) {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-neutral-100 {
+.bg-cv-dark-blue {
   --tw-bg-opacity: 1;
-  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+  background-color: rgb(0 35 43 / var(--tw-bg-opacity));
 }
 
 .bg-neutral-200 {
@@ -2464,6 +2431,11 @@ body:has(#menu-controller:checked) {
 .bg-primary-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
+}
+
+.bg-neutral-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
 .bg-purple-700 {
@@ -2496,56 +2468,16 @@ body:has(#menu-controller:checked) {
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
 }
 
-.bg-green-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(187 247 208 / var(--tw-bg-opacity));
-}
-
-.bg-purple-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(233 213 255 / var(--tw-bg-opacity));
-}
-
-.bg-purple-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
-}
-
-.bg-purple-600\/75 {
-  background-color: rgb(147 51 234 / 0.75);
-}
-
-.bg-purple-600\/50 {
-  background-color: rgb(147 51 234 / 0.5);
-}
-
-.bg-blue-600\/50 {
-  background-color: rgb(37 99 235 / 0.5);
-}
-
-.bg-blue-600\/75 {
-  background-color: rgb(37 99 235 / 0.75);
-}
-
-.bg-blue-800\/75 {
-  background-color: rgb(30 64 175 / 0.75);
-}
-
-.bg-purple-800\/75 {
-  background-color: rgb(107 33 168 / 0.75);
-}
-
-.bg-cv-dark-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 35 43 / var(--tw-bg-opacity));
+.fill-white {
+  fill: #fff;
 }
 
 .fill-gray-300 {
   fill: #d1d5db;
 }
 
-.fill-white {
-  fill: #fff;
+.fill-purple-500 {
+  fill: #a855f7;
 }
 
 .stroke-neutral-500 {
@@ -2621,9 +2553,9 @@ body:has(#menu-controller:checked) {
   padding-bottom: 2px;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .py-3 {
@@ -2631,9 +2563,9 @@ body:has(#menu-controller:checked) {
   padding-bottom: 0.75rem;
 }
 
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pt-2 {
@@ -2881,12 +2813,12 @@ body:has(#menu-controller:checked) {
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
 }
 
-.group:hover .group-hover\:fill-gray-500 {
-  fill: #6b7280;
-}
-
 .group:hover .group-hover\:fill-white {
   fill: #fff;
+}
+
+.group:hover .group-hover\:fill-gray-500 {
+  fill: #6b7280;
 }
 
 .group:hover .group-hover\:text-primary-600 {
@@ -2957,9 +2889,9 @@ body:has(#menu-controller:checked) {
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 
-.dark .dark\:bg-neutral-600 {
+.dark .dark\:bg-neutral-900 {
   --tw-bg-opacity: 1;
-  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-neutral-800 {
@@ -2995,38 +2927,9 @@ body:has(#menu-controller:checked) {
   background-color: rgb(38 38 38 / 0.5);
 }
 
-.dark .dark\:bg-neutral-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-}
-
 .dark .dark\:bg-purple-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(192 132 252 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-cv-dark-blue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 35 43 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-cv-dark-blue\/75 {
-  background-color: rgb(0 35 43 / 0.75);
-}
-
-.dark .dark\:bg-slate-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(51 65 85 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-slate-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-}
-
-.dark .dark\:bg-slate-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:fill-white {
@@ -3035,6 +2938,10 @@ body:has(#menu-controller:checked) {
 
 .dark .dark\:fill-gray-500 {
   fill: #6b7280;
+}
+
+.dark .dark\:fill-purple-300 {
+  fill: #d8b4fe;
 }
 
 .dark .dark\:stroke-neutral-200 {
@@ -3111,12 +3018,12 @@ body:has(#menu-controller:checked) {
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity));
 }
 
-.dark .group:hover .dark\:group-hover\:fill-gray-300 {
-  fill: #d1d5db;
-}
-
 .dark .group:hover .dark\:group-hover\:fill-white {
   fill: #fff;
+}
+
+.dark .group:hover .dark\:group-hover\:fill-gray-300 {
+  fill: #d1d5db;
 }
 
 .dark .group:hover .dark\:group-hover\:text-neutral-500 {
@@ -3146,14 +3053,6 @@ body:has(#menu-controller:checked) {
 
   .sm\:w-2\/3 {
     width: 66.666667%;
-  }
-
-  .sm\:w-1\/2 {
-    width: 50%;
-  }
-
-  .sm\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sm\:flex-row {
@@ -3250,10 +3149,6 @@ body:has(#menu-controller:checked) {
 
   .md\:w-\[350px\] {
     width: 350px;
-  }
-
-  .md\:w-1\/2 {
-    width: 50%;
   }
 
   .md\:max-w-none {
