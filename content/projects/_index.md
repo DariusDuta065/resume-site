@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "Sample **article** showcasing basic Markdown syntax and formatting for HTML elements."
+description: "Some of my personal projects I enjoyed working on"
 ---

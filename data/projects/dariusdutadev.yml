@@ -1,0 +1,47 @@
+topTags:
+  - name: Hugo
+    type: app
+  - name: Tailwind
+    type: app
+  - name: S3
+    type: aws
+  - name: CloudFront
+    type: aws
+  - name: CDK
+    type: aws
+
+stack:
+  - type: app
+    tech:
+      - name: Hugo
+        link: https://gohugo.io
+        desc: simple static site generator with excellent customizability and speed
+      - name: Tailwind CSS
+        link: https://tailwindcss.com/
+        desc: a different approach to CSS that optimises developer productivity and facilitates reusability of code and components
+      - name: Amazon S3
+        link: https://aws.amazon.com/s3/
+      - name: Amazon CloudFront
+        link: https://aws.amazon.com/cloudfront/
+
+  - type: utility
+    tech:
+      - name: Amazon Route 53
+        link: https://aws.amazon.com/route53/
+      - name: AWS Lambda
+        link: https://aws.amazon.com/lambda/
+      - name: AWS Certificate Manager
+        link: https://aws.amazon.com/certificate-manager/
+      - name: AWS SSM Parameter Store
+        link: https://aws.amazon.com/systems-manager/
+      - name: AWS Secrets Manager
+        link: https://aws.amazon.com/secrets-manager/
+
+  - type: devops
+    tech:
+      - name: AWS CDK
+        link: https://aws.amazon.com/cdk/
+      - name: AWS CodePipeline
+        link: https://aws.amazon.com/codepipeline/
+      - name: AWS CodeBuild
+        link: https://aws.amazon.com/codebuild/

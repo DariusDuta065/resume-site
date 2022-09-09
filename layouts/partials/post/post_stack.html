@@ -1,0 +1,11 @@
+<div class="mt-4">
+  {{ range .topTags }}
+  {{ $colour := "gray" }}
+  {{ $colour := cond (eq .type "aws") ("bg-yellow-800") ($colour)}}
+  {{ $colour := cond (eq .type "app") ("bg-green-800") ($colour)}}
+
+  <span class="text-white text-sm font-semibold px-3 py-1.5 mr-1 rounded-lg {{ $colour }}">
+    {{- .name -}}
+  </span>
+  {{ end }}
+</div>

@@ -1,16 +1,14 @@
-
 {{define "main"}}
-{{ $width := .Page.Params.ContentWidthClass | default "w-full lg:max-w-5xl" }}
+{{ $width := .Page.Params.ContentWidthClass | default "w-full lg:max-w-4xl" }}
 <main class="flex flex-col flex-grow p-0 px-2 sm:px-4 self-center {{ $width }}">
-  <div class="flex flex-col container self-center">
 
-    {{ if .Page.Params.ShowBreadCrumbs | default true }}
-    <div class="text-lg pt-2 px-4 sm:pt-2">
-      {{- partial "post/post_breadcrumbs.html" . }}
-    </div>
-    {{ end }}
+    <header>
+      {{ if .Page.Params.ShowBreadCrumbs | default true }}
+      <div class="text-lg pt-2 px-4 sm:pt-2">
+        {{- partial "post/post_breadcrumbs.html" . }}
+      </div>
+      {{ end }}
 
-    <div class="py-1">
       <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
         <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
         <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
@@ -21,9 +19,9 @@
         {{ partial "post/post_meta.html" . }}
       </div>
       {{ end }}
-    </div>
+    </header>
 
-    <section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
+    <article class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
 
       {{ if .Page.Params.ShowToc | default false }}
       <div class="order-first pt-4 px-0 lg:pt-0 lg:max-w-xs lg:order-last">
@@ -42,9 +40,8 @@
       <div class="min-w-0 min-h-0">
         {{ .Content }}
       </div>
-    </section>
+    </article>
 
-  </div>
 </main>
 
 {{end}}

@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
@@ -71,5 +72,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(function({ addVariant }) {
+      addVariant('hocus', ['&:hover', '&:focus'])
+      addVariant('not-last', '&:not(:last-child)')
+    })
+],
+  
 };

@@ -2034,14 +2034,14 @@ body:has(#menu-controller:checked) {
   margin-bottom: 1.5rem;
 }
 
-.my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .mx-0 {
@@ -2093,6 +2093,10 @@ body:has(#menu-controller:checked) {
   margin-left: 0.25rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .ml-1\.5 {
   margin-left: 0.375rem;
 }
@@ -2117,6 +2121,14 @@ body:has(#menu-controller:checked) {
   margin-top: -0.5rem;
 }
 
+.mr-1\.5 {
+  margin-right: 0.375rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -2135,10 +2147,6 @@ body:has(#menu-controller:checked) {
 
 .inline-flex {
   display: inline-flex;
-}
-
-.table {
-  display: table;
 }
 
 .grid {
@@ -2209,6 +2217,10 @@ body:has(#menu-controller:checked) {
   height: 3rem;
 }
 
+.h-9 {
+  height: 2.25rem;
+}
+
 .h-0 {
   height: 0px;
 }
@@ -2269,6 +2281,10 @@ body:has(#menu-controller:checked) {
   width: 3rem;
 }
 
+.w-9 {
+  width: 2.25rem;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -2307,6 +2323,10 @@ body:has(#menu-controller:checked) {
 
 .max-w-3xl {
   max-width: 48rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
 }
 
 .flex-grow {
@@ -2463,6 +2483,16 @@ body:has(#menu-controller:checked) {
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 
+.bg-yellow-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(133 77 14 / var(--tw-bg-opacity));
+}
+
+.bg-green-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 101 52 / var(--tw-bg-opacity));
+}
+
 .bg-purple-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
@@ -2548,6 +2578,11 @@ body:has(#menu-controller:checked) {
   padding-right: 2.5rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .py-\[2px\] {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -2561,11 +2596,6 @@ body:has(#menu-controller:checked) {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .pt-2 {
@@ -2738,13 +2768,35 @@ body:has(#menu-controller:checked) {
   transition-duration: 75ms;
 }
 
+.first\:my-8:first-child {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.last\:mb-0:last-child {
+  margin-bottom: 0px;
+}
+
+.last\:mr-0:last-child {
+  margin-right: 0px;
+}
+
 .last\:w-full:last-child {
   width: 100%;
+}
+
+.hover\:rounded-md:hover {
+  border-radius: 0.375rem;
 }
 
 .hover\:bg-purple-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(147 51 234 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-100:hover {
@@ -2760,6 +2812,11 @@ body:has(#menu-controller:checked) {
 .hover\:text-primary-600:hover {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.hover\:text-black:hover {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .hover\:text-primary-400:hover {
@@ -2884,6 +2941,11 @@ body:has(#menu-controller:checked) {
   border-color: rgb(82 82 82 / var(--tw-border-opacity));
 }
 
+.dark .dark\:border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
 .dark .dark\:border-white {
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
@@ -2925,6 +2987,11 @@ body:has(#menu-controller:checked) {
 
 .dark .dark\:bg-neutral-800\/50 {
   background-color: rgb(38 38 38 / 0.5);
+}
+
+.dark .dark\:bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:bg-purple-400 {
@@ -2991,6 +3058,11 @@ body:has(#menu-controller:checked) {
 .dark .dark\:hover\:bg-purple-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(126 34 206 / var(--tw-bg-opacity));
+}
+
+.dark .dark\:hover\:bg-gray-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:hover\:bg-gray-700:hover {
@@ -3231,8 +3303,8 @@ body:has(#menu-controller:checked) {
     display: none;
   }
 
-  .lg\:max-w-5xl {
-    max-width: 64rem;
+  .lg\:max-w-4xl {
+    max-width: 56rem;
   }
 
   .lg\:max-w-xs {

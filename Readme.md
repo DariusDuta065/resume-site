@@ -40,4 +40,4 @@ Run `yarn serve` to serve the generated files locally.
 
 The AWS infrastructure is fully-automated via [CDK](https://aws.amazon.com/cdk/).
 
-To view the CDK code and find out more, please see [infra/readme.md](/infra/README.md).
+To view the CDK code and find out more, please see [infra/readme.md](/infra/Readme.md).

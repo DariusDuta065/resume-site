@@ -1,5 +1,5 @@
 <article
-  class="drop-shadow-md hover:drop-shadow-lg hover:duration-500 bg-neutral-100 dark:bg-neutral-700 p-4 sm:p-8 rounded-md justify-center items-center align-middle my-2">
+  class="drop-shadow-md hover:drop-shadow-lg hover:duration-500 bg-neutral-100 dark:bg-neutral-700 p-4 sm:p-8 rounded-md justify-center items-center align-middle my-2 w-full max-w-lg">
 
   <a class="text-2xl text-neutral-800 dark:text-neutral-50 underline decoration-transparent decoration-2 underline-offset-2 hover:decoration-primary-500" aria-label="{{ .Title | plainify }}"
     href="{{ .Permalink }}">
@@ -7,16 +7,26 @@
   </a>
 
   {{- if (ne (.Param "hideSummary") true) }}
-  <div class="prose dark:prose-invert">
+  <div class="prose dark:prose-invert w-full max-w-3xl">
+    {{- if .Description -}}
+    {{ .Description }}
+    {{- else -}}
     {{ .Summary | plainify | htmlUnescape }}
+    {{- end -}}
   </div>
   {{- end }}
 
-  {{/*  Metadata  */}}
-  {{/*  {{- if (.Param "showMeta") }}
-  <footer class="text-neutral-600 dark:text-neutral-400">
+  {{- if .Param "dataFile" -}}
+    {{ $data := index $.Site.Data.projects (.Param "dataFile") }}
+    {{- if isset $data "topTags" -}}
+      {{- partial "post/post_stack" $data -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if (.Param "showMetaInList") }}
+  <footer class="mt-2 text-neutral-600 dark:text-neutral-400">
     {{ partial "post/post_meta.html" . }}
   </footer>
-  {{- end }} */}}
+  {{- end }}
 
 </article>

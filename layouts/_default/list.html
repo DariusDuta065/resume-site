@@ -1,20 +1,17 @@
 {{- define "main" }}
 
-<main class="flex flex-row flex-grow w-full h-max">
-
-  <div class="flex flex-col flex-grow px-2 sm:px-8 md:px-28 lg:px-32">
+<main class="flex flex-col flex-grow w-full h-max px-2 sm:px-8 md:px-28 lg:px-32">
 
     {{- if not .IsHome | and .Title }}
-    <header class="flex flex-col container max-w-xl self-center px-4 mt-4 sm:mt-6">
+    <header class="flex flex-col container max-w-xl mt-4 sm:mt-6">
       <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
         <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
         <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
       </div>
 
       {{- if .Description }}
-      <div class="px-4 mb-4 text-cv-dark-blue dark:text-white">
+      <div class="px-4 text-cv-dark-blue dark:text-white">
         <div class="mt-2 mb-4 max-w-lg">{{ .Description | markdownify }}</div>
-        <hr class="mt-4 max-w-lg" />
       </div>
       {{- end }}
     </header>
@@ -24,15 +21,11 @@
     {{- $paginator := .Paginate $pages }}
     {{- $term := .Data.Term }}
 
-    <div class="w-full flex justify-center">
-      <div class="flex flex-col p-2 sm:p-2 prose">
-        {{- range $index, $page := $paginator.Pages }}
-        {{ partial "post/post_card.html" . }}
-        {{- end }}
-      </div>
-    </div>
-
-  </div>
+    <section class="w-full flex flex-col p-2 sm:p-2">
+      {{- range $index, $page := $paginator.Pages }}
+      {{ partial "post/post_card.html" . }}
+      {{- end }}
+    </section>
 
 </main>
 

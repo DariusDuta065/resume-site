@@ -1,0 +1,13 @@
+{{ $icon := resources.Get "icons/github.svg" }}
+
+<a href="{{ .Get "link" }}" target="_blank" class="border-2 rounded-md px-3 py-2 inline-flex hover:rounded-md hover:text-black dark:border-gray-600 decoration-transparent dark:decoration-transparent hover:decoration-transparent hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-800 dark:hover:text-white">
+  <div class="flex flex-row items-center">
+    <div class="w-9 h-9 dark:fill-white">
+      {{ $icon.Content | safeHTML }}
+    </div>
+
+    <div class="ml-3 text-lg decoration-transparent hover:decoration-transparent">
+      {{ .Get "title" }}
+    </div>
+  </div>
+</a>
