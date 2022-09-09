@@ -15,6 +15,7 @@
   "scripts": {
     "start": "concurrently npm:watch:*",
     "build": "hugo --minify",
+    "tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css",
     "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
     "watch:hugo": "hugo server",
     "serve": "yarn build && serve public",
