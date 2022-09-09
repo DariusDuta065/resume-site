@@ -12,6 +12,7 @@ topTags:
 
 stack:
   - type: app
+    label: App & Data
     tech:
       - name: Hugo
         link: https://gohugo.io
@@ -19,29 +20,31 @@ stack:
       - name: Tailwind CSS
         link: https://tailwindcss.com/
         desc: a different approach to CSS that optimises developer productivity and facilitates reusability of code and components
-      - name: Amazon S3
+      - name: S3
         link: https://aws.amazon.com/s3/
-      - name: Amazon CloudFront
+      - name: CloudFront
         link: https://aws.amazon.com/cloudfront/
+      - name: Lambda
+        link: https://aws.amazon.com/lambda/
 
   - type: utility
+    label: Utilities
     tech:
-      - name: Amazon Route 53
+      - name: Route 53
         link: https://aws.amazon.com/route53/
-      - name: AWS Lambda
-        link: https://aws.amazon.com/lambda/
-      - name: AWS Certificate Manager
+      - name: Certificate Manager
         link: https://aws.amazon.com/certificate-manager/
-      - name: AWS SSM Parameter Store
+      - name: SSM Parameter Store
         link: https://aws.amazon.com/systems-manager/
-      - name: AWS Secrets Manager
+      - name: Secrets Manager
         link: https://aws.amazon.com/secrets-manager/
 
   - type: devops
+    label: DevOps
     tech:
-      - name: AWS CDK
+      - name: CDK
         link: https://aws.amazon.com/cdk/
-      - name: AWS CodePipeline
+      - name: CodePipeline
         link: https://aws.amazon.com/codepipeline/
-      - name: AWS CodeBuild
+      - name: CodeBuild
         link: https://aws.amazon.com/codebuild/

@@ -21,19 +21,11 @@
       {{ end }}
     </header>
 
-    <article class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert">
+    <article class="flex flex-col lg:flex-row max-w-full mt-0 prose dark:prose-invert">
 
       {{ if .Page.Params.ShowToc | default false }}
-      <div class="order-first pt-4 px-0 lg:pt-0 lg:max-w-xs lg:order-last">
-        <div
-          class="py-1 ml-2 pl-2 toc lg:border-l rounded-lg max-w-[inherit] lg:rounded-none border-2 lg:border-0 border-neutral-300 dark:border-neutral-600 lg:sticky lg:top-10 print:hidden w-[15rem]">
-
-          <div class="pt-2 pl-2 -mb-2 text-lg text-neutral-500 dark:text-neutral-100 lg:hidden">
-            Contents
-          </div>
-
-          {{ .TableOfContents | emojify }}
-        </div>
+      <div class="order-first lg:order-last pt-4 px-0 lg:pt-0 lg:max-w-xs">
+        {{ partial "contents" . }}
       </div>
       {{ end }}
 

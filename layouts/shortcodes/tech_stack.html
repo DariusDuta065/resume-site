@@ -1,22 +1,28 @@
 {{ $data := index $.Site.Data.projects ($.Page.Params.dataFile) }}
 
-<div class="my-2">
+<section>
   {{ range $data.stack }}
-  <div class="my-4 flex flex-col">
-    <div class="flex flex-row gap-2 mt-1 mb-2 last:mb-0 text-lg font-semibold">
+  <div class="mt-4 mb-4 first:mt-0 last:mb-0 flex flex-col">
+    <div class="flex flex-row gap-2 items-center mt-1 mb-2 last:mb-0 text-lg font-semibold dark:fill-white">
       {{ $icon := "icons/app_data.svg" }}
       {{ $icon := cond (eq .type "utility") "icons/utilities.svg" $icon }}
       {{ $icon := cond (eq .type "devops") "icons/devops.svg" $icon }}
 
-      {{ (resources.Get $icon).Content | safeHTML }}
-      {{ .type | pluralize | humanize }}
+      <div class="flex justify-center w-8 h-8">
+        {{ (resources.Get $icon).Content | safeHTML }}
+      </div>
+      <span class="flex items-center">
+        {{ .label }}
+      </span>
     </div>
 
     <div>
       {{ range .tech }}
-        <a href="{{- .link -}}" class="mr-1 last:mr-0">{{- .name -}}</a>
+        <a href="{{- .link -}}" target="_blank" class="mr-1 last:mr-0">
+          {{- .name -}}
+        </a>
       {{ end }}
     </div>
   </div>
   {{ end }}
-</div>
+</section>

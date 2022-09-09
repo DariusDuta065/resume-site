@@ -6,9 +6,9 @@
   <header class="page-header px-4 my-4 sm:my-6 flex flex-col w-1/2 self-center container">
 
     <div class="text-3xl flex self-center items-center text-center text-cv-dark-blue dark:text-white">
-      <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
+      {{/*  <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>  */}}
       <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
-      <div class="w-2 h-2 bg-neutral-400 ml-2 inline-block rounded-lg"></div>
+      {{/*  <div class="w-2 h-2 bg-neutral-400 ml-2 inline-block rounded-lg"></div>  */}}
     </div>
 
     {{- if .Description }}
@@ -24,8 +24,8 @@
 
   <div class="w-full flex justify-center">
     <div class="flex flex-col p-2 sm:p-6">
-      <div class="prose dark:prose-invert">
-        <h2>Currently reading</h2>
+      <div class="text-xl font-semibold">
+        Currently reading
       </div>
 
       {{- range $index, $page := $pages }}
@@ -35,9 +35,10 @@
       {{- end }}
 
       <hr class="my-6" />
-      <div class="prose dark:prose-invert">
-        <h2>Read</h2>
-      </div>
+
+      {{/*  <div class="text-xl font-semibold">
+        Read
+      </div>  */}}
 
       {{- range $index, $page := $pages }}
       {{ if eq $page.Params.Status "read" }}
