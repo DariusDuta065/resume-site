@@ -1,6 +1,8 @@
 {{ $data := index $.Site.Data.projects ($.Page.Params.dataFile) }}
 
 <section>
+  <h2 class="mt-8">Stack</h2>
+
   {{ range $data.stack }}
   <div class="mt-4 mb-4 first:mt-0 last:mb-0 flex flex-col">
     <div class="flex flex-row gap-2 items-center mt-1 mb-2 last:mb-0 text-lg font-semibold dark:fill-white">

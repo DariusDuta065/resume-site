@@ -5,7 +5,7 @@
   {{- if .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) -}}
   <span
     class="relative top-0 w-6  ltr:-left-6 not-prose">
-    <a class="text-neutral-300 group-hover:text-primary-600 dark:text-neutral-700 dark:group-hover:text-neutral-500 ml-1.5"
+    <a class="text-neutral-200 group-hover:text-primary-600 dark:text-neutral-700 dark:group-hover:text-neutral-500 ml-1.5"
       style="text-decoration-line: none !important;" href="#{{ .Anchor | safeURL }}"
       aria-label="Anchor">
       #

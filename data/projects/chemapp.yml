@@ -1,0 +1,46 @@
+topTags:
+  - name: NextJS
+    type: app
+  - name: GraphQL
+    type: app
+  - name: Tailwind
+    type: app
+  - name: ECS
+    type: aws
+  - name: CDK
+    type: aws
+
+stack:
+  - type: app
+    label: App & Data
+    tech:
+      - name: NextJS
+        link: https://nextjs.org/
+      - name: NestJS
+        link: https://nestjs.com/
+      - name: Tailwind CSS
+        link: https://tailwindcss.com/
+      - name: Redis
+        link: https://redis.io/
+      - name: MySQL
+        link: https://www.mysql.com/
+
+  - type: utility
+    label: Utilities
+    tech:
+      - name: Route 53
+        link: https://aws.amazon.com/route53/
+      - name: Certificate Manager
+        link: https://aws.amazon.com/certificate-manager/
+      - name: SSM Parameter Store
+        link: https://aws.amazon.com/systems-manager/
+      - name: Secrets Manager
+        link: https://aws.amazon.com/secrets-manager/
+
+  - type: devops
+    label: DevOps
+    tech:
+      - name: CDK
+        link: https://aws.amazon.com/cdk/
+      - name: GitHub Actions
+        link: https://github.com/features/actions

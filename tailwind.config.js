@@ -17,6 +17,19 @@ module.exports = {
           css: {
             "code::before": { content: "" },
             "code::after": { content: "" },
+            code: {
+              padding: "0.2rem 0.3rem",
+              fontWeight: "700",
+              borderRadius: "4px",
+
+              color: theme("colors.black / 0.9"),
+              background: theme("colors.gray.200 / 0.7"),
+
+              ".dark &": {
+                color: theme("colors.white / 0.9"),
+                background: theme("colors.gray.600 / 0.7"),
+              },
+            },
 
             a: {
               textDecoration: "underline",

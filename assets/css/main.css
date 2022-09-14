@@ -82,6 +82,11 @@ body:has(#menu-controller:checked) {
   @apply mt-3;
 }
 
+/* Code blocks */
+.prose pre {
+  @apply mt-0 mb-0;
+}
+
 /* Table of Contents */
 .toc ul,
 .toc li {
@@ -108,10 +113,12 @@ body:has(#menu-controller:checked) {
 
 /* Code Copy */
 .highlight-wrapper {
-  /* @apply block; */
+  @apply block;
 }
 .highlight {
   @apply relative z-0;
+  @apply grid;
+  @apply w-full;
 }
 .highlight:hover > .copy-button {
   @apply visible;

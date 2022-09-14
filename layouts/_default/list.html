@@ -1,6 +1,6 @@
 {{- define "main" }}
 
-<main class="flex flex-col flex-grow w-full h-max px-2 sm:px-8 md:px-28 lg:px-32">
+<main class="flex flex-col flex-grow w-full h-max max-w-4xl self-center px-2 sm:px-8 py-2">
 
     {{- if not .IsHome | and .Title }}
     <header class="flex flex-col container max-w-xl mt-4 sm:mt-6">
@@ -21,7 +21,7 @@
     {{- $paginator := .Paginate $pages }}
     {{- $term := .Data.Term }}
 
-    <section class="w-full flex flex-col p-2 sm:p-2">
+    <section class="w-full flex flex-col p-2 sm:p-2 items-center md:items-start">
       {{- range $index, $page := $paginator.Pages }}
       {{ partial "post/post_card.html" . }}
       {{- end }}
