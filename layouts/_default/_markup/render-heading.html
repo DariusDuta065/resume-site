@@ -1,16 +1,12 @@
-<h{{ .Level }} id="{{ .Anchor | safeURL }}" class="relative group">
-
+<h{{ .Level }} id="article-heading" class="relative group not-prose">
   {{- .Text | safeHTML -}}
 
   {{- if .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) -}}
-  <span
-    class="relative top-0 w-6  ltr:-left-6 not-prose">
-    <a class="text-neutral-200 group-hover:text-primary-600 dark:text-neutral-700 dark:group-hover:text-neutral-500 ml-1.5"
-      style="text-decoration-line: none !important;" href="#{{ .Anchor | safeURL }}"
-      aria-label="Anchor">
-      #
-    </a>
-  </span>
+  <a class="text-neutral-200 group-hover:text-primary-600 dark:text-neutral-700 dark:group-hover:text-neutral-500 ml-1.5"
+    style="text-decoration-line: none !important;" id="{{ .Anchor }}" href="#{{ .Anchor | safeURL }}"
+    aria-label="Anchor">
+    #
+  </a>
   {{- end -}}
 
 </h{{ .Level }}>

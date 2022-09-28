@@ -2,38 +2,81 @@
 {{ $width := .Page.Params.ContentWidthClass | default "w-full lg:max-w-4xl" }}
 <main class="flex flex-col flex-grow p-0 px-2 sm:px-4 self-center {{ $width }}">
 
-    <header>
-      {{ if .Page.Params.ShowBreadCrumbs | default true }}
-      <div class="text-lg pt-2 px-4 sm:pt-2">
-        {{- partial "post/post_breadcrumbs.html" . }}
-      </div>
-      {{ end }}
+  <header>
+    {{ if .Page.Params.ShowBreadCrumbs | default true }}
+    <div class="text-lg pt-2 px-4 sm:pt-2">
+      {{- partial "post/post_breadcrumbs.html" . }}
+    </div>
+    {{ end }}
 
-      <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
-        <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
-        <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
-      </div>
+    <div class="text-3xl flex self-start items-center text-center text-cv-dark-blue dark:text-white">
+      <div class="w-2 h-2 bg-neutral-400 mr-2 inline-block rounded-lg"></div>
+      <h1 class="font-bold dark:text-white">{{ .Title }}</h1>
+    </div>
 
-      {{ if .Page.Params.ShowMeta }}
-      <div class="pt-2 pl-4 text-neutral-500 dark:text-white">
-        {{ partial "post/post_meta.html" . }}
-      </div>
-      {{ end }}
-    </header>
+    {{ if .Page.Params.ShowMeta }}
+    <div class="pt-2 pl-4 text-neutral-500 dark:text-white">
+      {{ partial "post/post_meta.html" . }}
+    </div>
+    {{ end }}
+  </header>
 
-    <article class="flex flex-col lg:flex-row max-w-full mt-0 prose dark:prose-invert">
+  <article class="flex flex-col lg:flex-row max-w-full mt-0 prose dark:prose-invert">
 
-      {{ if .Page.Params.ShowToc | default false }}
-      <div class="order-first lg:order-last pt-4 px-0 lg:pt-0 lg:max-w-xs">
-        {{ partial "contents" . }}
-      </div>
-      {{ end }}
+    {{ if .Page.Params.ShowToc | default false }}
+    <div class="order-first lg:order-last pt-4 px-0 lg:pt-0 lg:max-w-xs">
+      {{ partial "contents" . }}
+    </div>
+    {{ end }}
 
-      <div class="min-w-0 min-h-0">
-        {{ .Content }}
-      </div>
-    </article>
+    <div class="min-w-0 min-h-0">
+      {{ .Content }}
+    </div>
+  </article>
 
 </main>
+
+<script>
+  const activeClass = "active";
+
+  const setCurrent = (e) => {
+    e.forEach(i => {
+      // Ignore h3's
+      // if (i.target.tagName === "H3") {
+      //  return;
+      // }
+
+      const elementSelector = `a[href="#${i.target.children[0].id}"]`;
+      const element = document.querySelector(elementSelector);
+
+      if (!element) {
+        return;
+      }
+
+      if (i.isIntersecting === true) {
+        element.classList.add(activeClass);
+      } else {
+        element.classList.remove(activeClass);
+      }
+    })
+  }
+
+  const intObserver = new IntersectionObserver(setCurrent, {
+    root: null,
+    rootMargin: "0px",
+    threshold: [1],
+  });
+
+  const addIntersectionObserver = () => {
+    const allHtags = document.querySelectorAll("#article-heading");
+    allHtags.forEach(tag => {
+      intObserver.observe(tag);
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    addIntersectionObserver();
+  });
+</script>
 
 {{end}}

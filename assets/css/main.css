@@ -111,6 +111,10 @@ body:has(#menu-controller:checked) {
   border-radius: 0.09rem;
 }
 
+.toc a.active {
+  @apply text-neutral-700 bg-purple-300 no-underline p-0.5;
+}
+
 /* Code Copy */
 .highlight-wrapper {
   @apply block;
