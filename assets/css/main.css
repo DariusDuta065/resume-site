@@ -87,6 +87,12 @@ body:has(#menu-controller:checked) {
   @apply mt-0 mb-0;
 }
 
+/* Figures */
+.prose figure {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Table of Contents */
 .toc ul,
 .toc li {

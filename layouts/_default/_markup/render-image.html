@@ -1,6 +1,7 @@
 {{ $url := urls.Parse .Destination }}
 {{ $altText := .Text }}
 {{ $caption := .Title }}
+
 {{ if findRE "^https?" $url.Scheme }}
   <figure>
     <img class="my-0 rounded-md" src="{{ $url.String }}" alt="{{ $altText }}" />
@@ -8,11 +9,13 @@
   </figure>
 {{ else }}
   {{ $resource := "" }}
+
   {{ if $.Page.Resources.GetMatch ($url.String) }}
     {{ $resource = $.Page.Resources.GetMatch ($url.String) }}
   {{ else if resources.GetMatch ($url.String) }}
     {{ $resource = resources.Get ($url.String) }}
   {{ end }}
+
   {{ with $resource }}
     <figure>
       <img
@@ -33,4 +36,5 @@
       {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
     </figure>
   {{ end }}
+
 {{ end }}

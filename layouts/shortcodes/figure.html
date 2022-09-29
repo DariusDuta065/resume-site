@@ -1,23 +1,32 @@
+{{ $pathArr := split (.Get "src") "." }}
+{{ $pathLen := len $pathArr }}
+{{ $ext := index $pathArr (sub $pathLen 1) }}
+
 {{ $image := resources.Get (.Get "src") }}
-{{ $image := $image.Resize (printf "%dx%d webp" (.Get "width" | default $image.Width) (.Get "height" | default $image.Height)) }}
 
 <figure{{ if or (.Get "class") (eq (.Get "align") "center") }} class="flex flex-col w-full 
-           {{- if eq (.Get "align") "center" }} items-center {{ end }}
-           {{- with .Get "class" }}{{ . }}{{- end }}"
+          {{- if eq (.Get "align") "center" }} items-center {{ end }}
+          {{- with .Get "class" }}{{ . }}{{- end }}"
 {{- end -}}>
 
   {{- if .Get "link" -}}
       <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
   {{- end }}
 
-  <img loading="lazy" src="{{ $image.RelPermalink }}"
-    {{- if or (.Get "alt") (.Get "caption") }}
-    alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
-    {{- end -}}
+  {{ if eq $ext "svg" }}
+    {{ $image.Content | safeHTML }}
+  {{ else }}
+    {{ $image := $image.Resize (printf "%dx%d webp" (.Get "width" | default $image.Width) (.Get "height" | default $image.Height)) }}
+    <img loading="lazy" src="{{ $image.RelPermalink }}"
+      {{- if or (.Get "alt") (.Get "caption") }}
+      alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+      {{- end -}}
 
-    {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-    {{- with .Get "height" }} height="{{ . }}"{{ end -}}
-  />
+      {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+      {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+    />
+  {{ end }}
+  
   
   <!-- Closing img tag -->
   {{- if .Get "link" }}</a>{{ end -}}
