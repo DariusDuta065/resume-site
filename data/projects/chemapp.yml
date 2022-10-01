@@ -32,10 +32,8 @@ stack:
         link: https://aws.amazon.com/route53/
       - name: Certificate Manager
         link: https://aws.amazon.com/certificate-manager/
-      - name: SSM Parameter Store
-        link: https://aws.amazon.com/systems-manager/
-      - name: Secrets Manager
-        link: https://aws.amazon.com/secrets-manager/
+      - name: Elastic Container Service
+        link: https://aws.amazon.com/ecs/
 
   - type: devops
     label: DevOps
@@ -44,3 +42,7 @@ stack:
         link: https://aws.amazon.com/cdk/
       - name: GitHub Actions
         link: https://github.com/features/actions
+      - name: Docker
+        link: https://docker.com
+      - name: Elastic Container Repository
+        link: https://aws.amazon.com/ecr/

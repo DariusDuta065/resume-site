@@ -1,7 +1,7 @@
 ---
 title: "dariusduta.dev"
 author: "Darius Duta"
-date: "2022-09-09"
+date: "2022-08-09"
 tags: ["project"]
 description: My personal website
 dataFile: dariusdutadev

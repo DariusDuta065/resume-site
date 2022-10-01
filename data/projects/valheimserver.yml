@@ -1,0 +1,42 @@
+topTags:
+  - name: Packer
+    type: app
+  - name: Lambda
+    type: app
+  - name: EventBridge
+    type: aws
+  - name: S3
+    type: aws
+  - name: ASG
+    type: aws
+  - name: CDK
+    type: aws
+
+stack:
+  - type: app
+    label: App & Data
+    tech:
+      - name: Lambda
+        link: https://aws.amazon.com/lambda/
+      - name: EC2
+        link: https://aws.amazon.com/ec2/
+      - name: S3
+        link: https://aws.amazon.com/s3/
+
+  - type: utility
+    label: Utilities
+    tech:
+      - name: ASG lifecycle hooks
+        link: https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html
+      - name : SSM Run Command
+        link: https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html
+      - name: EventBridge
+        link: https://aws.amazon.com/eventbridge/
+
+  - type: devops
+    label: DevOps
+    tech:
+      - name: Packer
+        link: https://www.packer.io/
+      - name: CDK
+        link: https://aws.amazon.com/cdk/
