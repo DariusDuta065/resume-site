@@ -21,18 +21,18 @@
     {{ end }}
   </header>
 
-  <article class="flex flex-col lg:flex-row max-w-full mt-0 prose dark:prose-invert">
+  <div class="flex flex-col lg:flex-row max-w-full mt-0 prose dark:prose-invert">
 
     {{ if .Page.Params.ShowToc | default false }}
-    <div class="order-first lg:order-last pt-4 px-0 lg:pt-0 lg:max-w-xs">
+    <aside class="order-first lg:order-last pt-4 px-0 lg:pt-0 lg:max-w-xs">
       {{ partial "contents" . }}
-    </div>
+    </aside>
     {{ end }}
 
-    <div class="min-w-0 min-h-0">
+    <article>
       {{ .Content }}
-    </div>
-  </article>
+    </article>
+  </div>
 
 </main>
 
@@ -41,17 +41,10 @@
 
   const setCurrent = (e) => {
     e.forEach(i => {
-      // Ignore h3's
-      // if (i.target.tagName === "H3") {
-      //  return;
-      // }
-
       const elementSelector = `a[href="#${i.target.children[0].id}"]`;
       const element = document.querySelector(elementSelector);
 
-      if (!element) {
-        return;
-      }
+      if (!element) { return; }
 
       if (i.isIntersecting === true) {
         element.classList.add(activeClass);

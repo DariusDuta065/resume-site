@@ -15,6 +15,8 @@ module.exports = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            "--tw-prose-invert-links": "rgb(255 255 255 / 85%)",
+
             "code::before": { content: "" },
             "code::after": { content: "" },
             code: {
@@ -35,12 +37,13 @@ module.exports = {
               textDecoration: "underline",
               textDecorationColor: theme("colors.purple.300 / 1"),
               fontWeight: "500",
+
               "&:hover": {
                 color: "white", // theme("colors.neutral.DEFAULT / 1"),
                 textDecoration: "none",
                 backgroundColor: theme("colors.purple.600 / 1"),
                 borderRadius: "0.09rem",
-              },
+              }
             },
             "a code": {
               color: "var(--tw-prose-code)",
@@ -64,8 +67,12 @@ module.exports = {
         invert: {
           css: {
             a: {
+              textDecorationColor: theme("colors.purple.300 / 0.9"),
+            },
+            "#TableOfContents a": {
               textDecorationColor: theme("colors.neutral.600 / 1"),
             },
+
             kbd: {
               color: theme("colors.neutral.200 / 1"),
               backgroundColor: theme("colors.neutral.700 / 1"),
