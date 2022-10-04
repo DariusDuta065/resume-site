@@ -59,7 +59,7 @@ This also gives another advantage in terms of cost performance and savings. Host
 
 With minimal effort put into configuring CloudFront’s caching behaviour, I was able to achieve the maximum score on Google’s Lighthouse test on both desktop & mobile categories.
 
-{{< figure src="images/lighthouse_test_results.png" title="Lighthouse test results" align="center" >}}
+{{< figure src="images/darius-duta-dev/lighthouse_test_results.png" title="Lighthouse test results" align="center" >}}
 
 ## Infrastructure
 

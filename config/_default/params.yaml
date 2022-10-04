@@ -18,7 +18,7 @@ assets:
   msapplication_TileColor: "#da532c"
   site_manifest: /site.webmanifest
 
-  profilePic: images/profile_pic.webp
+  profilePic: images/resume/profile_pic.webp
 
 features:
   showScrollToTop: true

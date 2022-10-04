@@ -26,7 +26,7 @@ contentWidthClass: "w-full max-w-4xl"
 
 {{< tech_stack >}}
 
-{{< figure src="images/valheim_screenshot.webp" title="Valheim is about survival & creativity" alt="Valheim is about survival & creativity" align="center" >}}
+{{< figure src="images/valheim-server/valheim_screenshot.webp" title="Valheim is about survival & creativity" alt="Valheim is about survival & creativity" align="center" >}}
 
 ## Requirements
 
@@ -120,7 +120,7 @@ To make it easy to control when the game server runs, a Lambda function exposes 
 
 The Lambda exposes a [function URL](https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html), which is a much simpler way to allow HTTP access to a function, especially when compared to provisioning an API Gateway just for one function.
 
-{{< figure src="images/valheim_diagram_1.svg" title="The user calls the Lambda to start/stop the game server" align="center" >}}
+{{< figure src="images/valheim-server/valheim_diagram_1.svg" title="The user calls the Lambda to start/stop the game server" align="center" >}}
 
 ### Improving start-up times
 
@@ -145,7 +145,7 @@ EventBridge integrates with many other AWS services. For this use case, SSM Run 
 
 The following diagram shows an overview of the stopping process:
 
-{{< figure src="images/valheim_diagram_2.svg" title="Overview of how game progress is saved between sessions" alt="Overview of how game progress is saved between sessions" align="center" >}}
+{{< figure src="images/valheim-server/valheim_diagram_2.svg" title="Overview of how game progress is saved between sessions" alt="Overview of how game progress is saved between sessions" align="center" >}}
 
 ### Preventing accidental costs
 
