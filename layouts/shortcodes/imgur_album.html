@@ -1,0 +1,9 @@
+{{ $albumCode := .Get "code" }}
+{{ $albumLabel := .Get "label" }}
+
+<div class="text-center flex self-center justify-center">
+  <blockquote class="imgur-embed-pub" lang="en" data-id="a/{{ $albumCode }}">
+    <a href="{{ print "//imgur.com/a/" $albumCode }}">{{ $albumLabel }}</a>
+  </blockquote>
+  <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+</div>

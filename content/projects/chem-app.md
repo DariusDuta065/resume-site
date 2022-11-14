@@ -33,7 +33,7 @@ During the admission exam, candidates are expected to answer 100 questions, of w
 
 ## Context
 
-My mother has been teaching biochemistry at the university and has been working with college students wanting to become medics for the past 30 years. She has always wanted to simplify the information and make it as logical as possible while also benefitting from digitalisation in a country where the government is not actively looking to integrate technology in the public education system.
+My mother has been teaching biochemistry at the university and has been working with college students wanting to become medics for the past 30 years. She has always wanted to simplify the information and make it as logical as possible while also benefitting from digitalisation in a country that is not actively looking to integrate technology in the public education system.
 
 Wanting to change the status quo, she allied with a colleague of her and they asked me if it was possible to build a simple web app where they could create their own lessons in digital format. The goal is for their students to always have the information with them by using a phone or a laptop to access the app anytime.
 
@@ -50,54 +50,107 @@ Having straightforward access to the learning material at all times from just th
 
 ## Tech stack
 
-- Some aspects I was especially interested in of the stack were over-engineered, while others are very minimal.
-- Providing a solution to this problem but also experimenting a bit more with technologies I'm interested in.
-  - see how GraphQL works in more detail and implement it myself from A to Z once to better contrast it with the familiar RESTful model.
-  - use NestJS for the back-end, in combination with TypeScript, instead of plain JS.
-  - build a blog using Notion’s API and Databases, after having heard that their databases API is enjoyable and some devs have even built fully-fledged apps using Notion as their CMS.
+Just like with most side projects, I was especially interested in some parts of the stack; thus, some parts were over-engineered, like the back-end, while others were built minimally.
 
 ### Backend
 
-- CMS --- Notion
-  - provides a simple, user-friendly way to author content, just like Markdown, but much more visual and guided
-- Back-end
-  - NestJS
-  - GraphQL
-  - Logs are being sent to CloudWatch
-  - The backend code is unit tested, and there are a couple of higher level E2E tests performed on the API.
-- Data storage
-  - MySQL --- I chose to use a relational DBMS because I was curious to see how an ORM in the JS/TS ecosystem compares with other projects such as .NET's Entity Framework or Laravel's Eloquent ORM.
+My goal was to provide a solution to this problem but also to experiment a bit more with technologies I'm interested in. I wanted to see how GraphQL works in more detail and implement it myself from start to finish, to better contrast it with the familiar REST model.
+
+- **CMS** --- Notion
+  - This was the first decision made, since the teachers need a simple, user-friendly way to author content
+  - Notion provides API access for free and it just an amazing tool that I use every day
+  - I read good things about their API and data model from the community and their [technical blog](https://www.notion.so/blog/topic/tech)
+- **API** --- NestJS, TypeScript, GraphQL, TypeORM
+  - Application logs are being sent to CloudWatch directly through [Winston](https://github.com/winstonjs/winston)
+  - The backend code is unit tested, and there are a couple of E2E tests performed on the API
+  - The unit & E2E tests also run on the CI pipeline, since database containers can be deployed temporarily with GitHub Actions as [service containers](https://docs.github.com/en/actions/using-containerized-services/about-service-containers)
+- **Data**
+  - **MySQL** --- I chose to use a relational DBMS because I was curious to see how an ORM in the JS/TS ecosystem compares with other projects such as .NET's Entity Framework or Laravel's Eloquent ORM.
     - [TypeORM](https://typeorm.io/) makes for a very enjoyable development experience, and is quite powerful in combination with its CLI and the native TypeScript support for data types (via annotations).
     - A NoSQL document database such as AWS DynamoDB or MongoDB would've been a better fit, since Notion's SDK returns JSON and that could've simplified the block aggregation process.
-  - Redis --- stores user session tokens and is also used by Bull to facilitate the asynchronous job queue.
+  - **Redis** --- stores user session tokens and is also used by Bull to facilitate the asynchronous job queue.
+  - **Notion** --- stores the database containing all the content
+
+{{< figure src="images/chem-app/www.notion.so_.png" title="Notion database" align="center" >}}
 
 ### Frontend
 
-- Front-end
-  - NextJS
-    - processes the content from the back-end and renders it to HTML from JSON
-    - good performance overall because of SSR
-  - Features
-    - light/dark mode
-    - english/romanian i18n
+- The frontend was built using NextJS; it is using [Apollo GraphQL](https://www.apollographql.com/) to interact the GraphQL API and hold the state.
+- NextJS [processes](https://github.com/dduta065/chem-fe/blob/main/components/content/contentProcessor.tsx) the JSON it gets from the API and renders it as an array of JSX elements, depending on the type of the blocks it encounters.
+  - This algorithm is recursive, since, by design, blocks can have children blocks which also need to be rendered however many levels deep.
+- It features:
+  - light & dark themes
+  - internationalisation (Romanian & English)
+  - a simple filter for the content type
+  - a search bar to quickly find content by title
+  - a mobile-friendly admin panel to manage students, groups, and assign content to groups
+
+{{< imgur_album code="aPiybyQ" label="cduta5.com demo" >}}
 
 ### DevOps
 
-- DevOps
-  - app packaged in a Docker image, uploaded to ECR
-  - ECS + EC2
-  - GitHub Actions used to deploy to ECS as well
-  - CDK used to provision the infra
-  - two environments: dev (`dev.cduta5.com`, usually deployed only when needed, to avoid costs) & prod (`cduta5.com`)
-  - environments mapped to different AWS accounts as per AWS best practices, using AWS Organizations
+#### Infrastructure
+
+- **CDK** is used to provision the infrastructure, with almost everything automated; there are two environments: dev (`dev.cduta5.com`, usually deployed only when needed, to avoid costs) & prod (`cduta5.com`).
+- The environments are mapped to different AWS accounts as per AWS best practices, using **AWS Organizations**.
+
+#### CI/CD
+
+- There are two EC2 instances required; one holds the databases (MySQL & Redis) and the other one the backend NestJS, the frontend NextJS, and a reverse proxy using Nginx.
+- All containers are uploaded to AWS **ECR**.
+- **ECS** is used, in combination with reserved EC2 instances (not Fargate), to manage the containers and keep them up.
+- **GitHub Actions** tests, builds, and deploys the containers to ECS.
+
+#### Network
+
+- Each EC2 instance belongs in a separate security group; the two SGs reference each other to allow for access from the app to the databases.
+- The traffic between the instances is kept in the VPC; a **Route53 private hosted zone** facilitates this.
+- **SSM Session Manager** provides secure SSH access to the instances if anything ever needs to be investigated.
 
 ## Challenges
 
-### Notion Database Synchronisation
+### Notion ↔ MySQL synchronisation
 
-- Notion API <-> MySQL sync
-  - block children
-  - parent block `lastUpdatedAt` does not take updates to children blocks into consideration
+With lessons that contain over 100 nested child blocks, it is impossible to ensure good performance without some pre-processing made for every page.
+
+This synchronisation process involves combining all nested children under a root parent block, resembling a tree-like data structure, that's serialised as JSON and stored in the `content` table in the database.
+
+This was by far the most interesting technical aspect of this project and the most important one; it is a totally asynchronous process, initiated by the `syncNotionJob()` function.  
+This process is scheduled to run every 15 minutes, which was the ideal gap that we found between two syncs.
+
+However, Notion's API is heavily rate limited to just 3 requests per second --- this sounds like a lot, but it can quickly become insufficient when you already have over 500 blocks. The full synchronisation process from an empty database table takes around 5 minutes currently, while also maxing out the rate limit.
+
+Every API request is abstracted in an async job and placed onto a queue that matches this rate limit, so staying under the limit is very simple in this case.
+
+#### Diffing algorithm
+
+To keep the state in sync between Notion's database and the `content` table in MySQL, the IDs of the root blocks are compared. Those that are not found in MySQL represent pages that need to be fetched, and later on, aggregated. Similarly, the IDs that are present in the `content` table, but not on Notion, denote `content` that has to be removed ([notion-api.processor.ts](https://github.com/dduta065/chem-graphql/blob/0e7063ba1f5640488bd690f131268a99362c6af9/src/notion/processors/notion-api.processor.ts#L41-L65) performs exactly this).
+
+However, Notion's API also presents a limitation here, because the parent block's `lastUpdatedAt` property does not also reflect the `lastUpdatedAt` of its children blocks.  
+This means that all common pages (present in both Notion & MySQL) still need to be updated, since the root parent's `lastUpdatedAt` cannot be trusted on its own.
+
+Another implication of this limitation is that the sync process must run regularly and re-fetch all the parent and their children blocks recursively. This explains the 15 minutes gap set between two syncs from earlier.
+
+Whenever a page has to be created or updated, the process starts from the root parent block. It then recursively fetches all its children and saves every block in the `notion_block` table.
+
+#### Block aggregation
+
+With all blocks required for a page to render now present in the `notion_block` table, it is now time to _attach_ all child blocks to their respective parents, and store the resulting content as JSON in the `content` table.  
+This _recomposition_ (or _aggregation_) process roughly does the following:
+
+- Starting from the initial parent block, the job recursively takes all the children from the `notion_block` table and adds a _children_ property on the parent object.
+  - In case a block is not present in the `notion_block` table or `is_updating` still, the job will fail itself and rely on the queue, which is set up to retry an aggregation for a page for up to 4 times with a delay between each attempt.
+- The resulting tree is then stored in the `content` table as JSON, ready to be served as-is to the frontend.
+- When a page is requested, the frontend will generate an array of JSX elements based on the JSON tree and render that to the end user afterwards.
+
+#### Refreshing pages
+
+This feature was heavily requested since it is very useful when authoring new content, because it allows the teacher to quickly iterate while also seeing how the content looks on the live website.  
+To achieve this, I have made sure to re-use as much code as possible to trigger a refresh for a particular page only. A button is now visible to all admins underneath the title of the page.
+
+{{< figure src="images/chem-app/refresh_content.png" title="Forcing a refresh on a page" align="center" >}}
+
+Without this functionality, teachers would have to wait for up to 15 minutes for the next scheduled sync to happen, which would greatly impede their ability to digitalise as much content as quickly as possible.
 
 ### Running on ARM64
 
@@ -112,11 +165,14 @@ The biggest disadvantage is that the build time rose from under a minute to arou
 
 ## Possible improvements
 
-- Better secrets management overall by integrating SSM Parameter Store (or Secrets Manager) for keys and tokens.
+- Better secrets management by integrating SSM Parameter Store (or Secrets Manager) for keys and tokens.
 - Generating the pages with NextJS ([NextJS Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration)) every 15 minutes instead of on every request.
   - Doing this should save some resources since most of that computation is based on older data that's updated every 15 minutes
 - Hosting the images and PDFs on own S3 buckets instead of relying on Notion
-  - Notion's API provides a pre-signed URL that's only valid for 1 hour; this validity period cannot currently be altered or specified at all.
+  - Currently, Notion hosts all the assets attached to the pages.
+  - Notion's API provides pre-signed S3 URLs that are only valid for 1 hour; this validity period cannot currently be changed.
+  - Hosting everything myself could allow me to perform a `syncNotionJob()` much more rarely.
+  - With the refresh functionality also implemented, it would ensure content freshness, while also minimising network requests to Notion's API.
 
 ## Conclusions
 
@@ -126,4 +182,4 @@ Being able to use ECS with EC2 reserved instances means the whole solution is ar
 
 Currently, the app serves around 100 students which log in at different times of the day from various user agents (indicating the students are using their smartphones to access the site at any time they like, just as intended).
 
-Hopefully this initiative will help more people get into medicine, as the Romanian national health system needs skilled doctors now more than ever.
+Hopefully this initiative will help more people get into medicine, as the Romanian national health system needs skilled doctors now more than ever. :fingers_crossed:

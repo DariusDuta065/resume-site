@@ -1,7 +1,7 @@
 <h{{ .Level }} id="article-heading" class="relative group not-prose">
   {{- .Text | safeHTML -}}
 
-  {{- if .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) -}}
+  {{- if and (lt .Level 4) (.Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true)) -}}
   <a class="text-neutral-200 group-hover:text-primary-600 dark:text-neutral-700 dark:group-hover:text-neutral-500 ml-1.5"
     style="text-decoration-line: none !important;" id="{{ .Anchor }}" href="#{{ .Anchor | safeURL }}"
     aria-label="Anchor">
