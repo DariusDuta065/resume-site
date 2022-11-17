@@ -11,7 +11,7 @@ main:
     name: Projects
     weight: 3
     url: /projects
-  - identifier: books
-    name: Books
-    weight: 4
-    url: /books
+  # - identifier: books
+  #   name: Books
+  #   weight: 4
+  #   url: /books
